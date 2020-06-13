@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login Form Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="LoginFormController" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mRC-ic-iXB">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BpO-cg-w1Y">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="605"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="yrL-mc-AAL" customClass="passwordInput">
+                                                <rect key="frame" x="107" y="100" width="200" height="475"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="mj3-Un-QVL">
+                                                        <rect key="frame" x="0.0" y="0.0" width="200" height="150"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZK-5U-KO2">
+                                                        <rect key="frame" x="69" y="180" width="62.5" height="31.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                        <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="6cy-Pd-NYU">
+                                                        <rect key="frame" x="25" y="241.5" width="150" height="34"/>
+                                                        <accessibility key="accessibilityConfiguration" hint="Password"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="150" id="ZFL-s4-i1U"/>
+                                                        </constraints>
+                                                        <attributedString key="attributedText"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jly-bk-wkk">
+                                                        <rect key="frame" x="46" y="305.5" width="108.5" height="31.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                        <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="IRJ-B2-O7w">
+                                                        <rect key="frame" x="25" y="367" width="150" height="34"/>
+                                                        <accessibility key="accessibilityConfiguration" hint="Password"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="150" id="tGW-Os-rdC"/>
+                                                        </constraints>
+                                                        <attributedString key="attributedText"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRZ-Hl-Zja">
+                                                        <rect key="frame" x="61.5" y="431" width="77" height="44"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                        <state key="normal" title="Sign In">
+                                                            <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="SignInButtonPresed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7LJ-Or-sbN"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="yrL-mc-AAL" secondAttribute="bottom" constant="30" id="VZE-e6-aTG"/>
+                                            <constraint firstItem="yrL-mc-AAL" firstAttribute="top" secondItem="BpO-cg-w1Y" secondAttribute="top" constant="100" id="m3q-4H-wGw"/>
+                                            <constraint firstItem="yrL-mc-AAL" firstAttribute="centerX" secondItem="BpO-cg-w1Y" secondAttribute="centerX" id="vrX-t5-YwU"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="BpO-cg-w1Y" secondAttribute="trailing" id="Mvm-Dn-S4V"/>
+                                    <constraint firstItem="BpO-cg-w1Y" firstAttribute="top" secondItem="mRC-ic-iXB" secondAttribute="top" id="UGa-1Z-URw"/>
+                                    <constraint firstItem="BpO-cg-w1Y" firstAttribute="leading" secondItem="mRC-ic-iXB" secondAttribute="leading" id="ckf-2n-9DW"/>
+                                    <constraint firstAttribute="bottom" secondItem="BpO-cg-w1Y" secondAttribute="bottom" id="xp3-0f-fFv"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="MSP-LF-giZ"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="B0R-Je-7J8"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="lk4-Kf-4Hq" appends="YES" id="83z-5H-Krt"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.32820293309999998" green="0.45981961490000001" blue="0.6431643963" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" red="0.22225636239999999" green="0.35049375890000001" blue="0.50198304650000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="mRC-ic-iXB" secondAttribute="top" id="58v-D9-PqA"/>
+                            <constraint firstItem="mRC-ic-iXB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="6po-qH-TIy"/>
+                            <constraint firstItem="mRC-ic-iXB" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="7Mq-2O-w1p"/>
+                            <constraint firstItem="BpO-cg-w1Y" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="LOL-LB-fn0"/>
+                            <constraint firstItem="mRC-ic-iXB" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Sgt-Gb-B9I"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="loginForm" destination="6cy-Pd-NYU" id="ugw-Y8-NRT"/>
+                        <outlet property="passwordForm" destination="IRJ-B2-O7w" id="gzL-hl-hve"/>
+                        <outlet property="scrollView" destination="mRC-ic-iXB" id="koB-Ex-Zqb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="lk4-Kf-4Hq">
+                    <connections>
+                        <action selector="scrollTapped:" destination="BYZ-38-t0r" id="nUN-U0-dFl"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="136.23188405797103" y="128.57142857142856"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Image" width="200" height="150"/>
+    </resources>
+</document>
