@@ -14,11 +14,42 @@ class LoginFormController: UIViewController {
     @IBOutlet weak var loginForm: UITextField!
     @IBOutlet weak var passwordForm: UITextField!
     
-
-    
-    @IBAction func SignInButtonPresed(_ sender: Any) {
-//        print(#function)
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        // Проверяем данные
+        let checkResult = checkUserData()
+        
+        // Если данные не верны, покажем ошибку
+        if !checkResult {
+            showLoginError()
+        }
+        
+        // Вернем результат
+        return checkResult
     }
+    
+    func checkUserData() -> Bool {
+        guard let login = loginForm.text,
+            let password = passwordForm.text else { return false }
+        
+        if login == "admin" && password == "123456" {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func showLoginError() {
+        // Создаем контроллер
+        let alter = UIAlertController(title: "Ошибка", message: "Введены неверные данные пользователя", preferredStyle: .alert)
+        // Создаем кнопку для UIAlertController
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        // Добавляем кнопку на UIAlertController
+        alter.addAction(action)
+        // Показываем UIAlertController
+        present(alter, animated: true, completion: nil)
+    }
+
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
