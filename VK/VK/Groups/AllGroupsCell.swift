@@ -16,6 +16,14 @@ class AllGroupsCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        allGroupsImage.layer.borderWidth = 1
+        allGroupsImage.layer.masksToBounds = false
+        allGroupsImage.layer.borderColor = UIColor.clear.cgColor
+        allGroupsImage.layer.cornerRadius = allGroupsImage.frame.height/2
+        allGroupsImage.clipsToBounds = true
+        
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
