@@ -34,7 +34,10 @@ class MyFriendsController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
 
-        let friend1 = User(name: "Clare", image: UIImage(named: "Clare"),
+        
+        
+        
+        let friend1 = User(name: "Clare", image: UIImage(named: "test"),
                            photos: [UIImage(named: "Clare"),
                                     UIImage(named: "Clare"),
                                     UIImage(named: "Clare"),
@@ -82,14 +85,20 @@ class MyFriendsController: UITableViewController {
         let currentFriend = self.friends[indexPath.row]
         cell.friendImage.image = currentFriend.image
         cell.friendName.text = currentFriend.name
-
-//        cell.friendName.text = friends[indexPath.row]
+        
+        cell.friendImage.layer.cornerRadius = cell.friendImage.frame.height/2
+        cell.friendImage.clipsToBounds = true
+        
+        cell.containerView.layer.cornerRadius = cell.friendImage.frame.height/2
+        cell.containerView.layer.shadowColor = UIColor.gray.cgColor
+        cell.containerView.layer.shadowOffset = CGSize(width:0, height: 0)
+        cell.containerView.layer.shadowRadius = 15.0
+        cell.containerView.layer.shadowOpacity = 0.9
         
         return cell 
     }
     
-    
-    
+
 
     /*
     // Override to support conditional editing of the table view.

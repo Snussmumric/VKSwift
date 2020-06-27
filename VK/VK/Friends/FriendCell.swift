@@ -9,8 +9,25 @@
 import UIKit
 
 class FriendCell: UICollectionViewCell {
-//    @IBOutlet weak var name: UILabel!
-//    @IBOutlet weak var friendImage: UIImageView!
     @IBOutlet weak var friendBigImage: UIImageView!
+    
+    @IBOutlet weak var likeLabel: UILabel!
+    @IBOutlet weak var likeButton: UIButton!
+    
+    
+    
+    @IBAction func likePressed() {
+        if likeButton.currentImage == UIImage(systemName: "heart"){
+            
+            likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            likeLabel.text = "1"
+        }else{
+            
+            likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            likeLabel.text = "0"
+            
+        }
+        
+    }
     
 }

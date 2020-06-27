@@ -14,10 +14,14 @@ class FriendController: UICollectionViewController {
     
     var photos: [UIImage?] = []
     
-
+   
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -46,6 +50,9 @@ class FriendController: UICollectionViewController {
     }
 
 
+    
+    
+
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return photos.count
@@ -57,6 +64,10 @@ class FriendController: UICollectionViewController {
         // Configure the cell
         cell.friendBigImage.image = photos[indexPath.row]
         
+        
+        cell.likeLabel.tintColor = .red
+        cell.likeButton.tintColor = .red
+                
         return cell
     }
 
