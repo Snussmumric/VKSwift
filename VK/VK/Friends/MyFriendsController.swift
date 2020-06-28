@@ -11,33 +11,17 @@ import UIKit
 class MyFriendsController: UITableViewController {
     
     var friends: [User] = []
-
-    
-//    let friend1 = User(name: "Vasy", image: UIImage(systemName: "calendar"),
-//    photos: [UIImage(systemName: "calendar"),
-//             UIImage(systemName: "calendar"),
-//             UIImage(systemName: "trash"),
-//             UIImage(systemName: "trash")])
-//    let friend2 = User(name: "Ilya", image: UIImage(systemName: "paperplane"),
-//                       photos: [UIImage(systemName: "pencil"),
-//                                UIImage(systemName: "person"),
-//                                UIImage(systemName: "trash"),
-//                                UIImage(systemName: "paperplane")])
-
+    var newFriends: [User] = []
+    var friendDictionary = [String: [String]]()
+    var friendSectionTitles = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-
-        
-        
-        
-        let friend1 = User(name: "Clare", image: UIImage(named: "test"),
+        let friend1 = User(name: "Clare",
+                           surname: "Smith",
+                           city: "NY",
+                           age: 22,
+                           image: UIImage(named: "test"),
                            photos: [UIImage(named: "Clare"),
                                     UIImage(named: "Clare"),
                                     UIImage(named: "Clare"),
@@ -46,12 +30,20 @@ class MyFriendsController: UITableViewController {
                                     UIImage(named: "Clare"),
                                     UIImage(named: "Clare"),
                                     UIImage(named: "Clare")])
-        let friend2 = User(name: "Bob", image: UIImage(named: "Bob"),
+        let friend2 = User(name: "Bob",
+                           surname: "Willyams",
+                           city: "TX",
+                           age: 37,
+                           image: UIImage(named: "Bob"),
                            photos: [UIImage(named: "Bob"),
                                     UIImage(named: "Bob"),
                                     UIImage(named: "Bob"),
                                     UIImage(named: "Bob")])
-        let friend3 = User(name: "Alice", image: UIImage(named: "Alice"),
+        let friend3 = User(name: "Alice",
+                           surname: "Pachino",
+                           city: "LA",
+                           age: 22,
+                           image: UIImage(named: "Alice"),
                            photos: [UIImage(named: "Alice"),
                                     UIImage(named: "Alice"),
                                     UIImage(named: "Alice"),
@@ -59,33 +51,67 @@ class MyFriendsController: UITableViewController {
         self.friends.append(friend3)
         self.friends.append(friend2)
         self.friends.append(friend1)
-    }
+        
+        
+        for friend in friends {
+            let friendKey = String(friend.surname.prefix(1))
+            if var friendValues = friendDictionary[friendKey] {
+                friendValues.append(friend.surname)
+                friendDictionary[friendKey] = friendValues
+            } else {
+                friendDictionary[friendKey] = [friend.surname]
 
-    // MARK: - Table view data source
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         if segue.destination is FriendController
-         {
-             let FriendController = segue.destination as? FriendController
-             // Получаем индекс выделенной ячейки
-                 if let indexPath = self.tableView.indexPathForSelectedRow {
-                     FriendController?.photos = friends[indexPath.row].photos
-                     }
-         }
+            }
+        }
+        
+        friendSectionTitles = [String](friendDictionary.keys)
+        friendSectionTitles = friendSectionTitles.sorted(by: {$0 < $1 })
+        
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is FriendViewController,
+            let indexPath = self.tableView.indexPathForSelectedRow {
+            let person = friends[indexPath.row]
+            let destination = segue.destination as! FriendViewController
+            destination.person = person
+        }
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return friends.count
+//        return friends.count
+        
+        let friendKey = friendSectionTitles[section]
+        if let friendValues = friendDictionary[friendKey] {
+            return friendValues.count
+        }
+        return 0
+        
     }
-
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        friendSectionTitles.count
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MyFriendsCell
-        let currentFriend = self.friends[indexPath.row]
-        cell.friendImage.image = currentFriend.image
-        cell.friendName.text = currentFriend.name
         
+        let currentFriend = self.friends[indexPath.row]
+        let friendKey = friendSectionTitles[indexPath.section]
+        if let newFriends = friendDictionary[friendKey] {
+//            let currentFriend = newFriends[indexPath.row]
+//            cell.friendName?.text = newFriends[indexPath.row]
+            
+        
+            cell.friendImage?.image = currentFriend.image
+        cell.friendName?.text = currentFriend.name + " " + currentFriend.surname
+            
+        }
+        
+        print(#function)
+        print(friendDictionary[friendKey]!)
+
         cell.friendImage.layer.cornerRadius = cell.friendImage.frame.height/2
         cell.friendImage.clipsToBounds = true
         
@@ -98,51 +124,12 @@ class MyFriendsController: UITableViewController {
         return cell 
     }
     
-
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return friendSectionTitles[section]
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return friendSectionTitles
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

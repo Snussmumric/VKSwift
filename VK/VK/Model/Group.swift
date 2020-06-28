@@ -9,7 +9,7 @@
 import UIKit
 
 class Group {
-
+    
     var name: String
     var image: UIImage?
     
@@ -22,5 +22,5 @@ class Group {
         self.name = name
         self.image = image
     }
-
+    
 }
