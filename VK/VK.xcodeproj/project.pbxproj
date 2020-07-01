@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3A21E088249F5B9100C604AD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A21E087249F5B9100C604AD /* User.swift */; };
 		3A21E08B249F5BA900C604AD /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A21E08A249F5BA900C604AD /* Group.swift */; };
-		3A21E08D249FB6FB00C604AD /* FriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A21E08C249FB6FB00C604AD /* FriendController.swift */; };
 		3A408F1E249DE38200964D45 /* MyFriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A408F1D249DE38200964D45 /* MyFriendsController.swift */; };
 		3A408F21249DE7EB00964D45 /* MyFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A408F20249DE7EB00964D45 /* MyFriendsCell.swift */; };
 		3A408F24249DEBC600964D45 /* AllGroupsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A408F23249DEBC600964D45 /* AllGroupsCell.swift */; };
@@ -21,6 +20,8 @@
 		3A5593CC2494B8740024A35A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A5593CA2494B8740024A35A /* Main.storyboard */; };
 		3A5593CE2494B8760024A35A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A5593CD2494B8760024A35A /* Assets.xcassets */; };
 		3A5593D92494C5060024A35A /* LoginFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5593D82494C5060024A35A /* LoginFormController.swift */; };
+		3AE2FC5E24A87B1D009BFDF2 /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE2FC5D24A87B1D009BFDF2 /* FriendViewController.swift */; };
+		3AE2FC6024A8AD3F009BFDF2 /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE2FC5F24A8AD3F009BFDF2 /* LikeControl.swift */; };
 		3AE45B6224A4023100B7148A /* ContainerImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE45B6124A4023100B7148A /* ContainerImage.swift */; };
 		3AE45B6624A4878D00B7148A /* IconsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE45B6524A4878D00B7148A /* IconsView.swift */; };
 /* End PBXBuildFile section */
@@ -28,7 +29,6 @@
 /* Begin PBXFileReference section */
 		3A21E087249F5B9100C604AD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3A21E08A249F5BA900C604AD /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
-		3A21E08C249FB6FB00C604AD /* FriendController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendController.swift; sourceTree = "<group>"; };
 		3A408F1D249DE38200964D45 /* MyFriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsController.swift; sourceTree = "<group>"; };
 		3A408F20249DE7EB00964D45 /* MyFriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsCell.swift; sourceTree = "<group>"; };
 		3A408F23249DEBC600964D45 /* AllGroupsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsCell.swift; sourceTree = "<group>"; };
@@ -42,6 +42,8 @@
 		3A5593CD2494B8760024A35A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A5593D22494B8760024A35A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A5593D82494C5060024A35A /* LoginFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFormController.swift; sourceTree = "<group>"; };
+		3AE2FC5D24A87B1D009BFDF2 /* FriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
+		3AE2FC5F24A8AD3F009BFDF2 /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
 		3AE45B6124A4023100B7148A /* ContainerImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerImage.swift; sourceTree = "<group>"; };
 		3AE45B6524A4878D00B7148A /* IconsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,8 +75,9 @@
 				3A408F20249DE7EB00964D45 /* MyFriendsCell.swift */,
 				3AE45B6524A4878D00B7148A /* IconsView.swift */,
 				3A408F2D249F4B3A00964D45 /* FriendCell.swift */,
-				3A21E08C249FB6FB00C604AD /* FriendController.swift */,
 				3AE45B6124A4023100B7148A /* ContainerImage.swift */,
+				3AE2FC5D24A87B1D009BFDF2 /* FriendViewController.swift */,
+				3AE2FC5F24A8AD3F009BFDF2 /* LikeControl.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -192,14 +195,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A408F28249DEBE800964D45 /* AllGroupsController.swift in Sources */,
-				3A21E08D249FB6FB00C604AD /* FriendController.swift in Sources */,
 				3A5593C52494B8740024A35A /* AppDelegate.swift in Sources */,
 				3A5593D92494C5060024A35A /* LoginFormController.swift in Sources */,
 				3A21E08B249F5BA900C604AD /* Group.swift in Sources */,
 				3AE45B6624A4878D00B7148A /* IconsView.swift in Sources */,
 				3A408F1E249DE38200964D45 /* MyFriendsController.swift in Sources */,
 				3A408F24249DEBC600964D45 /* AllGroupsCell.swift in Sources */,
+				3AE2FC6024A8AD3F009BFDF2 /* LikeControl.swift in Sources */,
 				3A408F2A249DEC1500964D45 /* MyGroupsController.swift in Sources */,
+				3AE2FC5E24A87B1D009BFDF2 /* FriendViewController.swift in Sources */,
 				3A408F21249DE7EB00964D45 /* MyFriendsCell.swift in Sources */,
 				3A408F26249DEBD700964D45 /* MyGroupsCell.swift in Sources */,
 				3A408F2E249F4B3A00964D45 /* FriendCell.swift in Sources */,
