@@ -8,65 +8,50 @@
 
 import UIKit
 
-class MyFriendsController: UITableViewController {
+class MyFriendsController: UITableViewController, UISearchBarDelegate {
     
-    var friends: [User] = []
-    var newFriends: [User] = []
-    var friendDictionary = [String: [String]]()
-    var friendSectionTitles = [String]()
+    // MARK: - Main
+
+    
+    @IBOutlet weak var friendSearcher: UISearchBar!
+    
+    
+//    var friends: [User] = []
+    var sections: [String] = []
+    var searchFriend = [User]()
+    var searching = false
+    
+    var friends = User.friends
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let friend1 = User(name: "Clare",
-                           surname: "Smith",
-                           city: "NY",
-                           age: 22,
-                           image: UIImage(named: "test"),
-                           photos: [UIImage(named: "Clare"),
-                                    UIImage(named: "Clare"),
-                                    UIImage(named: "Clare"),
-                                    UIImage(named: "Clare"),
-                                    UIImage(named: "Clare"),
-                                    UIImage(named: "Clare"),
-                                    UIImage(named: "Clare"),
-                                    UIImage(named: "Clare")])
-        let friend2 = User(name: "Bob",
-                           surname: "Willyams",
-                           city: "TX",
-                           age: 37,
-                           image: UIImage(named: "Bob"),
-                           photos: [UIImage(named: "Bob"),
-                                    UIImage(named: "Bob"),
-                                    UIImage(named: "Bob"),
-                                    UIImage(named: "Bob")])
-        let friend3 = User(name: "Alice",
-                           surname: "Pachino",
-                           city: "LA",
-                           age: 22,
-                           image: UIImage(named: "Alice"),
-                           photos: [UIImage(named: "Alice"),
-                                    UIImage(named: "Alice"),
-                                    UIImage(named: "Alice"),
-                                    UIImage(named: "Alice")])
-        self.friends.append(friend3)
-        self.friends.append(friend2)
-        self.friends.append(friend1)
         
-        
-        for friend in friends {
-            let friendKey = String(friend.surname.prefix(1))
-            if var friendValues = friendDictionary[friendKey] {
-                friendValues.append(friend.surname)
-                friendDictionary[friendKey] = friendValues
-            } else {
-                friendDictionary[friendKey] = [friend.surname]
 
-            }
-        }
         
-        friendSectionTitles = [String](friendDictionary.keys)
-        friendSectionTitles = friendSectionTitles.sorted(by: {$0 < $1 })
+        friends = friends.sorted (by: {$0.surname < $1.surname})
         
+        sections = Array(
+            Set(
+                friends.map({
+                    String($0.surname.prefix(1)).uppercased()
+                })
+            )
+        )
+        
+        sections = sections.sorted(by: {$0 < $1})
+        
+        friendSearcher.delegate = self
+        
+    }
+    
+    // MARK: - Table
+
+    
+    func itemsInSections(_ section: Int) -> [User] {
+        let letter = sections[section]
+        return friends.filter {$0.surname.hasPrefix(letter)}
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -79,57 +64,74 @@ class MyFriendsController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-//        return friends.count
         
-        let friendKey = friendSectionTitles[section]
-        if let friendValues = friendDictionary[friendKey] {
-            return friendValues.count
+        if searching {
+           return searchFriend.count
+        } else {
+            return itemsInSections(section).count
         }
-        return 0
-        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        friendSectionTitles.count
+        return sections.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sections[section]
+    }
+    
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return sections
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MyFriendsCell
         
-        let currentFriend = self.friends[indexPath.row]
-        let friendKey = friendSectionTitles[indexPath.section]
-        if let newFriends = friendDictionary[friendKey] {
-//            let currentFriend = newFriends[indexPath.row]
-//            cell.friendName?.text = newFriends[indexPath.row]
-            
-        
-            cell.friendImage?.image = currentFriend.image
-        cell.friendName?.text = currentFriend.name + " " + currentFriend.surname
-            
+        if searching {
+            let currentFriend = searchFriend[indexPath.row]
+            cell.containerView.imageView.image = currentFriend.image
+            cell.friendName?.text = currentFriend.name + " " + currentFriend.surname
+        } else {
+            let currentFriend = itemsInSections(indexPath.section)[indexPath.row]
+            cell.containerView.imageView.image = currentFriend.image
+            cell.friendName?.text = currentFriend.name + " " + currentFriend.surname + " " + "\(indexPath.section)" + "\(indexPath.row)"
+
         }
         
-        print(#function)
-        print(friendDictionary[friendKey]!)
-
-        cell.friendImage.layer.cornerRadius = cell.friendImage.frame.height/2
-        cell.friendImage.clipsToBounds = true
+        cell.layer.backgroundColor = UIColor(rgb: 0x92D5F9).cgColor
         
-        cell.containerView.layer.cornerRadius = cell.friendImage.frame.height/2
-        cell.containerView.layer.shadowColor = UIColor.gray.cgColor
-        cell.containerView.layer.shadowOffset = CGSize(width:0, height: 0)
-        cell.containerView.layer.shadowRadius = 15.0
-        cell.containerView.layer.shadowOpacity = 0.9
         
         return cell 
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return friendSectionTitles[section]
+    // MARK: - Header
+
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
+        headerView.layer.backgroundColor = UIColor(red: 0.146, green: 0.213, blue: 0.249, alpha: 0.75).cgColor
+        
+        let label = UILabel()
+        label.frame = CGRect.init(x: 0, y: -10, width: headerView.frame.width, height: headerView.frame.height)
+        label.text = sections[section]
+        
+        headerView.addSubview(label)
+        
+        return headerView
+        
     }
     
-    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return friendSectionTitles
+    
+    // MARK: - Search
+
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchFriend = friends.filter({($0.surname.prefix(searchText.count) == searchText) == true || ($0.name.prefix(searchText.count) == searchText) == true} )
+        searching = true
+        tableView.reloadData()
+        
     }
+    
     
 }

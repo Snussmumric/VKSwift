@@ -35,6 +35,7 @@ import UIKit
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.tintColor = .red
+        label.textAlignment = .center
         label.text = "\(0)"
         return label
     } ()
@@ -44,6 +45,8 @@ import UIKit
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.spacing = 4
+        stackView.alignment = .center
+        stackView.distribution = .fillProportionally
         return stackView
     } ()
     

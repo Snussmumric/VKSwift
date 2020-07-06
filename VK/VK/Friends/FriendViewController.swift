@@ -46,9 +46,11 @@ class FriendViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        personalInfoDataView.backgroundColor = UIColor(rgb: 0x4680C2)
+        personalInfoDataView.backgroundColor = UIColor(rgb: 0x92D5F9)
+        
+        
             
-//            UIColor(displayP3Red: 70, green: 128, blue: 194, alpha: 1)
+//            UIColor(displayP3Red: 146, green: 213, blue: 249, alpha: 1)
         
         personMainImage.image = person.image
         personName.text = person.name
