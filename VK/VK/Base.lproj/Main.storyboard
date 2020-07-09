@@ -76,6 +76,7 @@
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" red="0.5725490196078431" green="0.83529411764705885" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="yrL-mc-AAL" secondAttribute="bottom" constant="30" id="VZE-e6-aTG"/>
                                             <constraint firstItem="yrL-mc-AAL" firstAttribute="top" secondItem="BpO-cg-w1Y" secondAttribute="top" constant="150" id="m3q-4H-wGw"/>
@@ -140,6 +141,7 @@
                     <connections>
                         <segue destination="qb7-0a-TXo" kind="relationship" relationship="viewControllers" id="xxC-44-i9c"/>
                         <segue destination="rVn-xA-fE6" kind="relationship" relationship="viewControllers" id="4C5-F0-mNx"/>
+                        <segue destination="Qli-Ft-8tJ" kind="relationship" relationship="viewControllers" id="dVp-Th-oT0"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0cZ-om-MRw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -176,49 +178,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="WyY-mI-L0e">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="barTintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="75" id="quU-4H-506" customClass="MyFriendsCell" customModule="VK" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="75"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="quU-4H-506" id="ewT-Jm-0I3">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uHd-0e-euY" customClass="ContainerImage" customModule="VK" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uHd-0e-euY" customClass="AvatarView" customModule="VK" customModuleProvider="target">
                                             <rect key="frame" x="20" y="0.0" width="75" height="75"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YN8-dU-pAL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                            <real key="value" value="0.0"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                            <real key="value" value="11"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="newColor">
-                                                            <color key="value" cocoaTouchSystemColor="darkTextColor"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                            <color key="value" cocoaTouchSystemColor="darkTextColor"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                            <real key="value" value="22"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </imageView>
-                                            </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="75" id="4iT-sn-sbF"/>
-                                                <constraint firstItem="YN8-dU-pAL" firstAttribute="centerY" secondItem="uHd-0e-euY" secondAttribute="centerY" id="Q7u-SM-zkN"/>
-                                                <constraint firstItem="YN8-dU-pAL" firstAttribute="centerX" secondItem="uHd-0e-euY" secondAttribute="centerX" id="XUO-D4-PGP"/>
-                                                <constraint firstAttribute="trailing" secondItem="YN8-dU-pAL" secondAttribute="trailing" id="dm3-6H-t5O"/>
                                                 <constraint firstAttribute="width" constant="75" id="iMc-d2-NKZ"/>
-                                                <constraint firstItem="YN8-dU-pAL" firstAttribute="top" secondItem="uHd-0e-euY" secondAttribute="top" id="jFw-xg-H9T"/>
-                                                <constraint firstItem="YN8-dU-pAL" firstAttribute="leading" secondItem="uHd-0e-euY" secondAttribute="leading" id="r1p-Aa-356"/>
-                                                <constraint firstAttribute="bottom" secondItem="YN8-dU-pAL" secondAttribute="bottom" id="sGp-md-MSj"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                    <real key="value" value="16"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                    <color key="value" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                    <real key="value" value="22"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YBD-3w-cAz">
                                             <rect key="frame" x="115" y="11" width="279" height="53"/>
@@ -241,9 +232,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="containerView" destination="uHd-0e-euY" id="Ka8-73-dsc"/>
-                                    <outlet property="friendImage" destination="YN8-dU-pAL" id="01a-Zk-lgr"/>
                                     <outlet property="friendName" destination="YBD-3w-cAz" id="EyO-12-TmZ"/>
-                                    <outlet property="iconView" destination="uHd-0e-euY" id="LHX-Dd-4nA"/>
                                     <segue destination="aZH-2a-aW7" kind="show" identifier="" id="K2o-ST-oQH"/>
                                 </connections>
                             </tableViewCell>
@@ -254,6 +243,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Friends" id="dxG-bA-oVb"/>
+                    <connections>
+                        <outlet property="friendSearcher" destination="WyY-mI-L0e" id="voH-je-Fe4"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Xv-9r-6ky" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -534,6 +526,52 @@
             </objects>
             <point key="canvasLocation" x="2715.9420289855075" y="464.73214285714283"/>
         </scene>
+        <!--News-->
+        <scene sceneID="COa-1z-t1F">
+            <objects>
+                <tableViewController id="kOP-NC-W3k" customClass="NewsController" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="xEj-jf-yfy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier=" Cell" id="Zmq-dq-x3y" customClass="NewsCell" customModule="VK" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zmq-dq-x3y" id="reC-VM-wap">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="kOP-NC-W3k" id="cCl-Xr-TtA"/>
+                            <outlet property="delegate" destination="kOP-NC-W3k" id="Nlm-0m-xvs"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="News" id="XUA-fe-BVD"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tFx-2S-D4J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2716" y="1130"/>
+        </scene>
+        <!--News-->
+        <scene sceneID="gGr-ez-i8g">
+            <objects>
+                <navigationController id="Qli-Ft-8tJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="News" image="info.circle.fill" catalog="system" id="00a-Hw-V9o"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6fX-Lb-HMa">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="kOP-NC-W3k" kind="relationship" relationship="rootViewController" id="SaH-Y3-LRw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Dz-ci-XO3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1935" y="1131"/>
+        </scene>
         <!--Search Groups-->
         <scene sceneID="idn-3v-tpB">
             <objects>
@@ -542,9 +580,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="bLU-oz-25G">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="75" id="MfD-hh-tFm" customClass="AllGroupsCell" customModule="VK" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="75"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MfD-hh-tFm" id="sJ7-Fy-sjx">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
@@ -598,6 +641,7 @@
     </scenes>
     <resources>
         <image name="Image" width="200" height="150"/>
+        <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
