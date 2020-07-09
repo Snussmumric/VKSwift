@@ -126,7 +126,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="410" y="142"/>
+            <point key="canvasLocation" x="384" y="142"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="uMf-3O-fTF">
@@ -242,7 +242,13 @@
                             <outlet property="delegate" destination="PwZ-YU-rfi" id="kUF-U4-foL"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Friends" id="dxG-bA-oVb"/>
+                    <navigationItem key="navigationItem" title="Friends" id="dxG-bA-oVb">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.clockwise" catalog="system" id="N46-nI-oqg">
+                            <connections>
+                                <action selector="refresh:" destination="PwZ-YU-rfi" id="Jod-ti-jWm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="friendSearcher" destination="WyY-mI-L0e" id="voH-je-Fe4"/>
                     </connections>
@@ -386,7 +392,7 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="likesCount">
-                                                            <integer key="value" value="1000"/>
+                                                            <integer key="value" value="874"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isLiked" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
@@ -641,6 +647,7 @@
     </scenes>
     <resources>
         <image name="Image" width="200" height="150"/>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>

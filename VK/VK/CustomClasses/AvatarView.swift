@@ -54,7 +54,7 @@ import UIKit
         print(#function)
         setup()
     }
-
+    
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
         print(#function)
@@ -96,5 +96,31 @@ import UIKit
         shadowView.layer.shadowOpacity = shadowOpacity
         shadowView.layer.shadowRadius = shadowRadius
     }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        shadowView.addGestureRecognizer(tap)
+        shadowView.isUserInteractionEnabled = true
+    }
+    
+    
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        UIView.animate(
+            withDuration: 1,
+            delay: 0,
+            usingSpringWithDamping: 0.5,
+            initialSpringVelocity: 0,
+            options: [],
+            animations: {
+                self.shadowView.transform = CGAffineTransform(scaleX: 2, y: 2)
+                self.shadowView.transform = .identity
+                self.imageView.transform = CGAffineTransform(scaleX: 2, y: 2)
+                self.imageView.transform = .identity
+        }, completion: { _ in
+            
+        })    }
     
 }

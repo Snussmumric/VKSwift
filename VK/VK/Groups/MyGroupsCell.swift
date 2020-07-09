@@ -15,10 +15,33 @@ class MyGroupsCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        let tap = UITapGestureRecognizer (target: self, action: #selector(avatarTapped))
+        myGroupImage.isUserInteractionEnabled = true
+        myGroupImage.addGestureRecognizer(tap)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+
+    
+    @objc func avatarTapped(_ recognizer: UITapGestureRecognizer) {
+        
+        
+        UIView.animate(
+            withDuration: 1,
+            delay: 0,
+            usingSpringWithDamping: 0.5,
+            initialSpringVelocity: 0,
+            options: [],
+            animations: {
+                self.myGroupImage.transform = CGAffineTransform(scaleX: 2, y: 2)
+                self.myGroupImage.transform = .identity
+        }, completion: { _ in
+            
+        })
     }
     
 }

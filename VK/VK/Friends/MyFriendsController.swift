@@ -18,7 +18,7 @@ class MyFriendsController: UITableViewController, UISearchBarDelegate {
     
 //    var friends: [User] = []
     var sections: [String] = []
-    var searchFriend = [User]()
+    var searchFriend: [User] = []
     var searching = false
     
     var friends = User.friends
@@ -46,6 +46,25 @@ class MyFriendsController: UITableViewController, UISearchBarDelegate {
         
     }
     
+    // MARK: - Action
+    
+    @IBAction func refresh (_ sender: UIBarButtonItem) {
+        let backgroungView = UIView()
+        backgroungView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        view.addSubview(backgroungView)
+        backgroungView.frame = view.bounds
+        
+        let loadingView = LoadingView()
+        backgroungView.addSubview(loadingView)
+        loadingView.center = view.center
+        loadingView.startAnimation()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            backgroungView.removeFromSuperview()
+        }
+    }
+
+    
     // MARK: - Table
 
     
@@ -57,7 +76,7 @@ class MyFriendsController: UITableViewController, UISearchBarDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is FriendViewController,
             let indexPath = self.tableView.indexPathForSelectedRow {
-            let person = friends[indexPath.row]
+            let person = itemsInSections(indexPath.section)[indexPath.row]
             let destination = segue.destination as! FriendViewController
             destination.person = person
         }

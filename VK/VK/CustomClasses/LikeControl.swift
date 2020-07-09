@@ -72,17 +72,46 @@ import UIKit
         
         stackView.addArrangedSubview(countLabel)
         stackView.addArrangedSubview(likeButton)
+        
+        
+    }
+    
+    func pulsate() {
+        
+        let pulse = CASpringAnimation(keyPath: "transfrom.scale")
+        pulse.duration = 0.6
+        pulse.fromValue = 0.95
+        pulse.toValue = 1
+        pulse.autoreverses = true
+        pulse.repeatCount = 2
+        pulse.initialVelocity = 0.5
+        pulse.damping = 1
+        
+        layer.add(pulse, forKey: nil)
+        
     }
     
     @objc func likeButtonTapped(_ sender: UIButton) {
         isLiked.toggle()
     }
     
+    
     private func updateLike() {
         let imageName = isLiked ? "heart.fill" : "heart"
         likeButton.setImage(UIImage(systemName: imageName), for: .normal)
         likesCount = isLiked ? likesCount + 1 : likesCount - 1
+        
+        UIView.animate(withDuration: 0.2, animations: { () -> Void in
+            self.countLabel.transform = .init(scaleX: 1.25, y: 1.25)
+        }) { (finished: Bool) -> Void in
+            self.countLabel.text = String(self.likesCount)
+            UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                self.countLabel.transform = .identity
+            })
+        }
+        
     }
     
 
 }
+

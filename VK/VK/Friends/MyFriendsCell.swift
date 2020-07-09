@@ -22,4 +22,5 @@ class MyFriendsCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+
 }
