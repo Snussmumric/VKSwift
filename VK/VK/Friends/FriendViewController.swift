@@ -9,21 +9,21 @@
 import UIKit
 
 extension UIColor {
-   convenience init(red: Int, green: Int, blue: Int) {
-       assert(red >= 0 && red <= 255, "Invalid red component")
-       assert(green >= 0 && green <= 255, "Invalid green component")
-       assert(blue >= 0 && blue <= 255, "Invalid blue component")
-
-       self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
-   }
-
-   convenience init(rgb: Int) {
-       self.init(
-           red: (rgb >> 16) & 0xFF,
-           green: (rgb >> 8) & 0xFF,
-           blue: rgb & 0xFF
-       )
-   }
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+        
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+    
+    convenience init(rgb: Int) {
+        self.init(
+            red: (rgb >> 16) & 0xFF,
+            green: (rgb >> 8) & 0xFF,
+            blue: rgb & 0xFF
+        )
+    }
 }
 
 class FriendViewController: UIViewController, UICollectionViewDelegate {
@@ -37,6 +37,9 @@ class FriendViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var personalInfoView: UIView!
     @IBOutlet weak var personalInfoDataView: UIView!
     
+    let transitionController = TransitionController()
+    //    let startView: UIImageView? = nil
+    
     var photos: [UIImage?] = []
     var person : User!
     
@@ -49,8 +52,8 @@ class FriendViewController: UIViewController, UICollectionViewDelegate {
         personalInfoDataView.backgroundColor = UIColor(rgb: 0x92D5F9)
         
         
-            
-//            UIColor(displayP3Red: 146, green: 213, blue: 249, alpha: 1)
+        
+        //            UIColor(displayP3Red: 146, green: 213, blue: 249, alpha: 1)
         
         personMainImage.image = person.image
         personName.text = person.name
@@ -63,8 +66,29 @@ class FriendViewController: UIViewController, UICollectionViewDelegate {
         friendCollectionView.delegate = self
         friendCollectionView.dataSource = self
         
+        personMainImage.isUserInteractionEnabled = true
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        personMainImage.addGestureRecognizer(tap)
+        
+        
     }
     
+    @objc func tapped(_ sender: UITapGestureRecognizer) {
+        print ("You tapped more")
+        performSegue(withIdentifier: "segue", sender: UITapGestureRecognizer.self)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let viewController = segue.destination as? ZoomedPictureController {
+            viewController.photo = person.image
+            viewController.transitioningDelegate = transitionController
+            transitionController.startView = personMainImage
+            
+        }
+        
+    }
 }
 
 extension FriendViewController: UICollectionViewDataSource {
