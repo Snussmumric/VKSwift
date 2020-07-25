@@ -18,38 +18,6 @@
             endingLineNumber = "149"
             landmarkName = "searchBar(_:textDidChange:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "EF49C17A-4C03-4AD6-9196-54CF271F3182 - 7a88460d47c61ecf"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "VK.MyFriendsController.searchBar(_: __C.UISearchBar, textDidChange: Swift.String) -&gt; ()"
-                  moduleName = "VK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/anton/Documents/Swift_learning/VKSwift/VK/VK/Friends/MyFriendsController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "149"
-                  endingLineNumber = "149"
-                  offsetFromSymbolStart = "59">
-               </Location>
-               <Location
-                  uuid = "EF49C17A-4C03-4AD6-9196-54CF271F3182 - 65a50728700c86e6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (VK.User) -&gt; Swift.Bool in VK.MyFriendsController.searchBar(_: __C.UISearchBar, textDidChange: Swift.String) -&gt; ()"
-                  moduleName = "VK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/anton/Documents/Swift_learning/VKSwift/VK/VK/Friends/MyFriendsController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "149"
-                  endingLineNumber = "149"
-                  offsetFromSymbolStart = "40">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

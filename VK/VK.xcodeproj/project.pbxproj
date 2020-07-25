@@ -25,6 +25,7 @@
 		3A57018224B337AA0088C958 /* NewsPhotoCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A57018024B337AA0088C958 /* NewsPhotoCollectionCell.xib */; };
 		3A57018424B6EADE0088C958 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A57018324B6EADE0088C958 /* LoadingView.swift */; };
 		3A57018624B6EE420088C958 /* LoadingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A57018524B6EE420088C958 /* LoadingController.swift */; };
+		3A71D84224CCC0C700C37141 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A71D84124CCC0C700C37141 /* Session.swift */; };
 		3A77F19F24ACF043008F71C2 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A77F19E24ACF043008F71C2 /* AvatarView.swift */; };
 		3AE2FC5E24A87B1D009BFDF2 /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE2FC5D24A87B1D009BFDF2 /* FriendViewController.swift */; };
 		3AE2FC6024A8AD3F009BFDF2 /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE2FC5F24A8AD3F009BFDF2 /* LikeControl.swift */; };
@@ -59,6 +60,7 @@
 		3A57018024B337AA0088C958 /* NewsPhotoCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsPhotoCollectionCell.xib; sourceTree = "<group>"; };
 		3A57018324B6EADE0088C958 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		3A57018524B6EE420088C958 /* LoadingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingController.swift; sourceTree = "<group>"; };
+		3A71D84124CCC0C700C37141 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		3A77F19E24ACF043008F71C2 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		3AE2FC5D24A87B1D009BFDF2 /* FriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
 		3AE2FC5F24A8AD3F009BFDF2 /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
@@ -89,37 +91,15 @@
 				3A21E087249F5B9100C604AD /* User.swift */,
 				3A21E08A249F5BA900C604AD /* Group.swift */,
 				3A57017D24B32DCA0088C958 /* NewsModel.swift */,
+				3A71D84124CCC0C700C37141 /* Session.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		3A408F1F249DE7C000964D45 /* Friends */ = {
-			isa = PBXGroup;
-			children = (
-				3A408F1D249DE38200964D45 /* MyFriendsController.swift */,
-				3A408F20249DE7EB00964D45 /* MyFriendsCell.swift */,
-				3A408F2D249F4B3A00964D45 /* FriendCell.swift */,
-				3AE2FC5D24A87B1D009BFDF2 /* FriendViewController.swift */,
-			);
-			path = Friends;
-			sourceTree = "<group>";
-		};
-		3A408F22249DEBA700964D45 /* Groups */ = {
-			isa = PBXGroup;
-			children = (
-				3A408F23249DEBC600964D45 /* AllGroupsCell.swift */,
-				3A408F25249DEBD700964D45 /* MyGroupsCell.swift */,
-				3A408F27249DEBE800964D45 /* AllGroupsController.swift */,
-				3A408F29249DEC1500964D45 /* MyGroupsController.swift */,
-			);
-			path = Groups;
 			sourceTree = "<group>";
 		};
 		3A5593B82494B8740024A35A = {
 			isa = PBXGroup;
 			children = (
 				3A5593C32494B8740024A35A /* VK */,
-				3A5593C22494B8740024A35A /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,51 +109,83 @@
 				3A5593C12494B8740024A35A /* VK.app */,
 			);
 			name = Products;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		3A5593C32494B8740024A35A /* VK */ = {
 			isa = PBXGroup;
 			children = (
-				3AEFCD4224ADB24C000EDA36 /* News */,
+				3A71D84624CCC38500C37141 /* Storyboard */,
+				3A71D84424CCC35400C37141 /* Controllers */,
+				3A71D84324CCC34600C37141 /* Views */,
 				3AEFCD3B24AD1999000EDA36 /* CustomClasses */,
 				3A21E086249F5B7200C604AD /* Model */,
-				3A408F22249DEBA700964D45 /* Groups */,
-				3A408F1F249DE7C000964D45 /* Friends */,
-				3A5593C42494B8740024A35A /* AppDelegate.swift */,
-				3A5593CA2494B8740024A35A /* Main.storyboard */,
-				3A5593CD2494B8760024A35A /* Assets.xcassets */,
-				3A5593D22494B8760024A35A /* Info.plist */,
-				3A5593D82494C5060024A35A /* LoginFormController.swift */,
+				3A71D84524CCC35B00C37141 /* App */,
 			);
 			path = VK;
+			sourceTree = "<group>";
+		};
+		3A71D84324CCC34600C37141 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3AEFCD3E24ADA93A000EDA36 /* NewsCell.swift */,
+				3AEFCD3F24ADA93A000EDA36 /* NewsCell.xib */,
+				3A57017F24B337AA0088C958 /* NewsPhotoCollectionCell.swift */,
+				3A57018024B337AA0088C958 /* NewsPhotoCollectionCell.xib */,
+				3A77F19E24ACF043008F71C2 /* AvatarView.swift */,
+				3A57018324B6EADE0088C958 /* LoadingView.swift */,
+				3A408F23249DEBC600964D45 /* AllGroupsCell.swift */,
+				3A408F25249DEBD700964D45 /* MyGroupsCell.swift */,
+				3A408F2D249F4B3A00964D45 /* FriendCell.swift */,
+				3A408F20249DE7EB00964D45 /* MyFriendsCell.swift */,
+				3AE2FC5F24A8AD3F009BFDF2 /* LikeControl.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3A71D84424CCC35400C37141 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3AEFCD4324ADB265000EDA36 /* NewsController.swift */,
+				3A57018524B6EE420088C958 /* LoadingController.swift */,
+				3AE719A924BF6A3F005388C8 /* ZoomedPictureController.swift */,
+				3A408F27249DEBE800964D45 /* AllGroupsController.swift */,
+				3A408F29249DEC1500964D45 /* MyGroupsController.swift */,
+				3A408F1D249DE38200964D45 /* MyFriendsController.swift */,
+				3AE2FC5D24A87B1D009BFDF2 /* FriendViewController.swift */,
+				3A5593D82494C5060024A35A /* LoginFormController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3A71D84524CCC35B00C37141 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				3A5593C42494B8740024A35A /* AppDelegate.swift */,
+				3A5593CD2494B8760024A35A /* Assets.xcassets */,
+				3A5593D22494B8760024A35A /* Info.plist */,
+				3A5593C22494B8740024A35A /* Products */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		3A71D84624CCC38500C37141 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				3A5593CA2494B8740024A35A /* Main.storyboard */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 		3AEFCD3B24AD1999000EDA36 /* CustomClasses */ = {
 			isa = PBXGroup;
 			children = (
-				3AE2FC5F24A8AD3F009BFDF2 /* LikeControl.swift */,
-				3A77F19E24ACF043008F71C2 /* AvatarView.swift */,
 				3AEFCD3C24AD1DA7000EDA36 /* FriendsHeader.swift */,
-				3AEFCD3E24ADA93A000EDA36 /* NewsCell.swift */,
-				3AEFCD3F24ADA93A000EDA36 /* NewsCell.xib */,
-				3A57017F24B337AA0088C958 /* NewsPhotoCollectionCell.swift */,
-				3A57018024B337AA0088C958 /* NewsPhotoCollectionCell.xib */,
-				3A57018324B6EADE0088C958 /* LoadingView.swift */,
-				3A57018524B6EE420088C958 /* LoadingController.swift */,
 				3AE719A524BE5C85005388C8 /* TransitionController.swift */,
 				3AE719A724BE5ECA005388C8 /* Animator.swift */,
-				3AE719A924BF6A3F005388C8 /* ZoomedPictureController.swift */,
 				3AE719AB24BF9F76005388C8 /* CGRectExtension.swift */,
 			);
 			path = CustomClasses;
-			sourceTree = "<group>";
-		};
-		3AEFCD4224ADB24C000EDA36 /* News */ = {
-			isa = PBXGroup;
-			children = (
-				3AEFCD4324ADB265000EDA36 /* NewsController.swift */,
-			);
-			path = News;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,6 +280,7 @@
 				3AE719A624BE5C85005388C8 /* TransitionController.swift in Sources */,
 				3A408F21249DE7EB00964D45 /* MyFriendsCell.swift in Sources */,
 				3A408F26249DEBD700964D45 /* MyGroupsCell.swift in Sources */,
+				3A71D84224CCC0C700C37141 /* Session.swift in Sources */,
 				3AE719AC24BF9F76005388C8 /* CGRectExtension.swift in Sources */,
 				3A408F2E249F4B3A00964D45 /* FriendCell.swift in Sources */,
 				3A57018124B337AA0088C958 /* NewsPhotoCollectionCell.swift in Sources */,
@@ -410,7 +423,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6L8Y48RX9J;
-				INFOPLIST_FILE = VK/Info.plist;
+				INFOPLIST_FILE = VK/App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -428,7 +441,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6L8Y48RX9J;
-				INFOPLIST_FILE = VK/Info.plist;
+				INFOPLIST_FILE = VK/App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
