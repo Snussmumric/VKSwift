@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -33,6 +33,9 @@
 		3AE719A824BE5ECA005388C8 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE719A724BE5ECA005388C8 /* Animator.swift */; };
 		3AE719AA24BF6A3F005388C8 /* ZoomedPictureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE719A924BF6A3F005388C8 /* ZoomedPictureController.swift */; };
 		3AE719AC24BF9F76005388C8 /* CGRectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE719AB24BF9F76005388C8 /* CGRectExtension.swift */; };
+		3AEB86FF24D18AFD00F2AF30 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3AEB86FE24D18AFD00F2AF30 /* Alamofire */; };
+		3AEB870124D18BC400F2AF30 /* VKAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEB870024D18BC400F2AF30 /* VKAuthViewController.swift */; };
+		3AEB870424D18C3900F2AF30 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEB870324D18C3900F2AF30 /* WebKit.framework */; };
 		3AEFCD3D24AD1DA7000EDA36 /* FriendsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEFCD3C24AD1DA7000EDA36 /* FriendsHeader.swift */; };
 		3AEFCD4024ADA93A000EDA36 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEFCD3E24ADA93A000EDA36 /* NewsCell.swift */; };
 		3AEFCD4124ADA93A000EDA36 /* NewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AEFCD3F24ADA93A000EDA36 /* NewsCell.xib */; };
@@ -68,6 +71,8 @@
 		3AE719A724BE5ECA005388C8 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		3AE719A924BF6A3F005388C8 /* ZoomedPictureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomedPictureController.swift; sourceTree = "<group>"; };
 		3AE719AB24BF9F76005388C8 /* CGRectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRectExtension.swift; sourceTree = "<group>"; };
+		3AEB870024D18BC400F2AF30 /* VKAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKAuthViewController.swift; sourceTree = "<group>"; };
+		3AEB870324D18C3900F2AF30 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		3AEFCD3C24AD1DA7000EDA36 /* FriendsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsHeader.swift; sourceTree = "<group>"; };
 		3AEFCD3E24ADA93A000EDA36 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		3AEFCD3F24ADA93A000EDA36 /* NewsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsCell.xib; sourceTree = "<group>"; };
@@ -79,6 +84,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AEB870424D18C3900F2AF30 /* WebKit.framework in Frameworks */,
+				3AEB86FF24D18AFD00F2AF30 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				3A5593C32494B8740024A35A /* VK */,
+				3AEB870224D18C3800F2AF30 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -154,6 +162,7 @@
 				3A408F1D249DE38200964D45 /* MyFriendsController.swift */,
 				3AE2FC5D24A87B1D009BFDF2 /* FriendViewController.swift */,
 				3A5593D82494C5060024A35A /* LoginFormController.swift */,
+				3AEB870024D18BC400F2AF30 /* VKAuthViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -175,6 +184,14 @@
 				3A5593CA2494B8740024A35A /* Main.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		3AEB870224D18C3800F2AF30 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3AEB870324D18C3900F2AF30 /* WebKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		3AEFCD3B24AD1999000EDA36 /* CustomClasses */ = {
@@ -204,6 +221,9 @@
 			dependencies = (
 			);
 			name = VK;
+			packageProductDependencies = (
+				3AEB86FE24D18AFD00F2AF30 /* Alamofire */,
+			);
 			productName = VK;
 			productReference = 3A5593C12494B8740024A35A /* VK.app */;
 			productType = "com.apple.product-type.application";
@@ -232,6 +252,9 @@
 				Base,
 			);
 			mainGroup = 3A5593B82494B8740024A35A;
+			packageReferences = (
+				3AEB86FD24D18AFD00F2AF30 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 3A5593C22494B8740024A35A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -270,6 +293,7 @@
 				3AEFCD4024ADA93A000EDA36 /* NewsCell.swift in Sources */,
 				3A408F24249DEBC600964D45 /* AllGroupsCell.swift in Sources */,
 				3AEFCD3D24AD1DA7000EDA36 /* FriendsHeader.swift in Sources */,
+				3AEB870124D18BC400F2AF30 /* VKAuthViewController.swift in Sources */,
 				3AE2FC6024A8AD3F009BFDF2 /* LikeControl.swift in Sources */,
 				3A408F2A249DEC1500964D45 /* MyGroupsController.swift in Sources */,
 				3AE2FC5E24A87B1D009BFDF2 /* FriendViewController.swift in Sources */,
@@ -475,6 +499,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3AEB86FD24D18AFD00F2AF30 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3AEB86FE24D18AFD00F2AF30 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3AEB86FD24D18AFD00F2AF30 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3A5593B92494B8740024A35A /* Project object */;
 }
