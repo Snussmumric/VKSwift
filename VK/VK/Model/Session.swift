@@ -10,13 +10,12 @@ import Foundation
 
 class Session: CustomStringConvertible {
     
-    var token: String
-    var userId: Int
+    static let instance = Session()
     
-    init(token: String, userId: Int) {
-        self.token = token
-        self.userId = userId
-    }
+    private init() {}
+    
+    var token = ""
+    var userId = 0
     
     var description: String {
         return "token: \(token), userID: \(userId)"
