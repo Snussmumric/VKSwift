@@ -21,20 +21,3 @@ class Session: CustomStringConvertible {
         return "id: \(token)\nuserId: \(userId)"
     }
 }
-
-//import Foundation
-//
-//class Session: CustomStringConvertible {
-//
-//    static let instance = Session()
-//
-//    private init() {}
-//
-//    var token = ""
-//    var userId = 0
-//
-//    var description: String {
-//        return "token: \(token), userID: \(userId)"
-//    }
-//
-//}

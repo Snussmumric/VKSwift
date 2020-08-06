@@ -10,7 +10,9 @@ import UIKit
 
 class MyGroupsController: UITableViewController {
     
-    var groups = [Group]()
+    var service = VKService()
+    var groups: [Groups] = []
+    var filteredGroups: [Groups] = []
     
     @IBAction func addGroup(segue: UIStoryboardSegue) {
         if segue.identifier == "addGroup" {
@@ -27,18 +29,23 @@ class MyGroupsController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        service.getGroups { [weak self] (groups) in
+            self?.groups = groups
+            self?.filteredGroups = groups
+            self?.tableView.reloadData()
+        }
+        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groups.count
+        return filteredGroups.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MyGroupsCell
-        let currentGroup = self.groups[indexPath.row]
-        
-        cell.myGroupName.text = currentGroup.name
-        cell.myGroupImage.image = currentGroup.image
+        cell.configure(group: filteredGroups[indexPath.row])
+
+//        cell.myGroupImage.image = currentGroup.image
         
         return cell
     }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 extension UIColor {
     convenience init(red: Int, green: Int, blue: Int) {
@@ -26,7 +27,7 @@ extension UIColor {
     }
 }
 
-class FriendViewController: UIViewController, UICollectionViewDelegate {
+class FriendViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     
     @IBOutlet weak var personMainImage: UIImageView!
@@ -40,26 +41,32 @@ class FriendViewController: UIViewController, UICollectionViewDelegate {
     let transitionController = TransitionController()
     //    let startView: UIImageView? = nil
     
-    var photos: [UIImage?] = []
-    var person : User!
+    //    var photos: [UIImage?] = []
+    var photos: [Photos] = []
+    var person : Users!
+    lazy var service = VKService()
+    
     
     @IBOutlet weak var friendCollectionView: UICollectionView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        personName.text = person.firstName
+        personSurname.text = person.lastName
+        service.getPhotos(ownerID: person.id) { [weak self] (photos) in
+            self?.photos = photos
+            self?.friendCollectionView.reloadData()
+//            self?.personCity.text = String(photos.count)
+        }
+        
         
         personalInfoDataView.backgroundColor = UIColor(rgb: 0x92D5F9)
         
-        
-        
-        //            UIColor(displayP3Red: 146, green: 213, blue: 249, alpha: 1)
-        
-        personMainImage.image = person.image
-        personName.text = person.name
-        personSurname.text = person.surname
-        personCity.text = person.city
-        personAge.text = String(person.age)
+        if let imageUrl = person.imageUrl100, let url = URL(string: imageUrl) {
+            let resource = ImageResource(downloadURL: url)
+            personMainImage?.kf.setImage(with: resource)
+        }
         
         friendCollectionView.backgroundColor = .white
         
@@ -72,6 +79,8 @@ class FriendViewController: UIViewController, UICollectionViewDelegate {
         personMainImage.addGestureRecognizer(tap)
         
         
+        
+        
     }
     
     @objc func tapped(_ sender: UITapGestureRecognizer) {
@@ -82,10 +91,19 @@ class FriendViewController: UIViewController, UICollectionViewDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? ZoomedPictureController {
-            viewController.photo = person.image
+            viewController.photo = personMainImage.image
             viewController.transitioningDelegate = transitionController
             transitionController.startView = personMainImage
             
+        }
+        
+        if
+            let controller = segue.destination as? SliderViewController,
+            let indexPath = friendCollectionView.indexPathsForSelectedItems?.first
+        {
+            controller.title = title
+            controller.photos = photos
+            controller.currentIndex = indexPath.row
         }
         
     }
@@ -93,14 +111,12 @@ class FriendViewController: UIViewController, UICollectionViewDelegate {
 
 extension FriendViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendCell", for: indexPath) as! FriendCell
-        cell.friendBigPhotos.image = person.photos[indexPath.row]
-        
-        
+        cell.configure(photo: photos[indexPath.row])
         return cell
     }
     
