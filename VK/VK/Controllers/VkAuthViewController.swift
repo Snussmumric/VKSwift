@@ -8,28 +8,24 @@
 
 import UIKit
 import WebKit
+import Alamofire
 
-class VKAuthViewController: UIViewController, WKNavigationDelegate {
+class VkAuthViewController: UIViewController, WKNavigationDelegate {
     
     
     let session = Session.instance
+    let vkmethods = VkMethods()
     
-    @IBOutlet weak var webView: WKWebView! {
-        didSet {
-            webView.navigationDelegate = self
-        }
-    }
+    @IBOutlet weak var webView: WKWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        webView.navigationDelegate = self
         
-        loadVKAuth()
+        loadVkAuth()
         
     }
-    
-    
-    func loadVKAuth() {
-        
+    func loadVkAuth () {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "oauth.vk.com"
@@ -43,13 +39,10 @@ class VKAuthViewController: UIViewController, WKNavigationDelegate {
             URLQueryItem(name: "v", value: "5.68")
         ]
         
-        guard let url = urlComponents.url else {return}
-        let request = URLRequest(url: url)
+        let request = URLRequest(url: urlComponents.url!)
         
         webView.load(request)
-        
     }
-    
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         
@@ -70,12 +63,19 @@ class VKAuthViewController: UIViewController, WKNavigationDelegate {
         }
         
         guard let token = params["access_token"] else {return}
+        guard let userId = params["user_id"] else {return}
         session.token = token
+        session.userId = Int(userId)!
+        print(session.userId)
+        //        print(fragment)
+        print(session.token)
         
-        print(token)
-        
+        vkmethods.getVkFriends()
+        vkmethods.getGroups()
+        vkmethods.getPhotos()
+        vkmethods.getSearchedGroups()
         
         decisionHandler(.cancel)
     }
+    
 }
-
