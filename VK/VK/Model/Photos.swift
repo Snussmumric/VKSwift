@@ -7,16 +7,18 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct Photos: Decodable {
+final class Photos: Object, Decodable {
     
-    var imageURL: String?
+     @objc dynamic var imageURL: String?
     
     enum CodingKeys: String, CodingKey {
     case photo = "photo_604"
     }
     
-    init(from decoder: Decoder) throws {
+    convenience init(from decoder: Decoder) throws {
+        self.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.imageURL = try container.decode(String.self, forKey: .photo)
     }

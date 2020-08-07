@@ -14,7 +14,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        print(getDocumentsDirectory())
         return true
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return path[0]
     }
 
 }

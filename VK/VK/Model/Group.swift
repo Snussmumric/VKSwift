@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import RealmSwift
 
-struct Groups: Decodable {
+
+final class Groups: Object, Decodable {
     
-    var name: String
-    var imageUrl: String?
+    @objc dynamic var name: String = ""
+    @objc dynamic var imageUrl: String?
     
     // MARK: - Decodable
     
@@ -20,7 +22,8 @@ struct Groups: Decodable {
         case photo = "photo_50"
     }
     
-    init(from decoder: Decoder) throws {
+    convenience init(from decoder: Decoder) throws {
+        self.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         self .name = try container.decode(String.self, forKey: .name)

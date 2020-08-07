@@ -7,16 +7,18 @@
 //
 
 import UIKit
+//import realmswift
+import RealmSwift
 
-struct Users: Decodable {
+final class Users: Object, Decodable {
     
-    var name: String
+    @objc dynamic var name: String = ""
     var imageUrl50: String?
     var imageUrl100: String?
     var photos: [String] = []
-    var id: Int
-    var firstName: String
-    var lastName: String
+    var id: Int = 0
+    var firstName: String = ""
+    var lastName: String = ""
 //    var birthDate: String?
     
     // MARK: - Decodable
@@ -30,7 +32,9 @@ struct Users: Decodable {
 //        case bdate = "bdate"
     }
     
-    init(from decoder: Decoder) throws {
+    convenience init(from decoder: Decoder) throws {
+        self.init()
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         let firstName = try container.decode(String.self, forKey: .firstName)
