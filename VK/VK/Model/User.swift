@@ -8,73 +8,41 @@
 
 import UIKit
 
-class User {
+struct Users: Decodable {
     
     var name: String
-    var surname: String
-    var city: String
-    var age: Int
-    var image: UIImage?
-    var photos: [UIImage?]
+    var imageUrl50: String?
+    var imageUrl100: String?
+    var photos: [String] = []
+    var id: Int
+    var firstName: String
+    var lastName: String
+//    var birthDate: String?
     
-    init() {
-        self.name = "userName"
-        self.surname = "userSurname"
-        self.city = "userCity"
-        self.age = 99
-        self.image = UIImage(systemName: "person")
-        self.photos = []
+    // MARK: - Decodable
+    
+    enum CodingKeys: String, CodingKey {
+        case firstName = "first_name"
+        case lastName = "last_name"
+        case photo50 = "photo_50"
+        case photo100 = "photo_100"
+        case id
+//        case bdate = "bdate"
     }
     
-    init(name: String, surname: String, city: String, age: Int, image: UIImage?, photos: [UIImage?]) {
-        self.name = name
-        self.surname = surname
-        self.city = city
-        self.age = age
-        self.image = image
-        self.photos = photos
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        let firstName = try container.decode(String.self, forKey: .firstName)
+        let lastName = try container.decode(String.self, forKey: .lastName)
+        
+        self.lastName = try container.decode(String.self, forKey: .lastName)
+        self.firstName = try container.decode(String.self, forKey: .firstName)
+        self.name = firstName + " " + lastName
+        self.imageUrl50 = try container.decode(String.self, forKey: .photo50)
+        self.imageUrl100 = try container.decode(String.self, forKey: .photo100)
+        self.id = try container.decode(Int.self, forKey: .id)
+//        self.birthDate = try container.decode(String.self, forKey: .bdate)
     }
-    
-    
-    static let friends: [User] = [
-        User(name: "Clare",
-        surname: "Willyams",
-        city: "NY",
-        age: 22,
-        image: UIImage(named: "test"),
-        photos: [UIImage(named: "Clare"),
-                 UIImage(named: "Clare"),
-                 UIImage(named: "Clare"),
-                 UIImage(named: "Clare"),
-                 UIImage(named: "Clare"),
-                 UIImage(named: "Clare"),
-                 UIImage(named: "Clare"),
-                 UIImage(named: "Clare")]),
-        User(name: "Bob",
-        surname: "Smith",
-        city: "TX",
-        age: 37,
-        image: UIImage(named: "Bob"),
-        photos: [UIImage(named: "Bob"),
-                 UIImage(named: "Bob"),
-                 UIImage(named: "Bob"),
-                 UIImage(named: "Bob")]),
-        User(name: "Alice",
-        surname: "Pachino",
-        city: "LA",
-        age: 22,
-        image: UIImage(named: "Alice"),
-        photos: [UIImage(named: "Alice"),
-                 UIImage(named: "Alice"),
-                 UIImage(named: "Alice"),
-                 UIImage(named: "Alice")]),
-        User(name: "Alice",
-        surname: "Pachinello",
-        city: "LA",
-        age: 22,
-        image: UIImage(named: "Alice"),
-        photos: [UIImage(named: "Alice"),
-                 UIImage(named: "Alice"),
-                 UIImage(named: "Alice"),
-                 UIImage(named: "Alice")])    ]
+
 }

@@ -8,19 +8,23 @@
 
 import UIKit
 
-class Group {
+struct Groups: Decodable {
     
     var name: String
-    var image: UIImage?
+    var imageUrl: String?
     
-    init() {
-        self.name = "groupName"
-        self.image = UIImage(systemName: "person.3")
+    // MARK: - Decodable
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case photo = "photo_50"
     }
     
-    init(name: String, image: UIImage?) {
-        self.name = name
-        self.image = image
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self .name = try container.decode(String.self, forKey: .name)
+        self.imageUrl = try container.decode(String.self, forKey: .photo)
     }
-    
+
 }

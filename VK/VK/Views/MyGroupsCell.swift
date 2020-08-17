@@ -7,11 +7,27 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MyGroupsCell: UITableViewCell {
     
     @IBOutlet weak var myGroupImage: UIImageView!
     @IBOutlet weak var myGroupName: UILabel!
+    
+    override func layoutSubviews() {
+           super.layoutSubviews()
+           imageView?.makeCircle()
+       }
+       
+       func configure(group: Groups) {
+           myGroupName?.text = group.name
+           
+           if let imageUrl = group.imageUrl, let url = URL(string: imageUrl) {
+               let resource = ImageResource(downloadURL: url)
+               myGroupImage?.kf.setImage(with: resource)
+           }
+       }
+
     
     override func awakeFromNib() {
         super.awakeFromNib()

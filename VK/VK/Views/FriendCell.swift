@@ -7,10 +7,18 @@
 //
 
 import UIKit
+import Kingfisher
 
 class FriendCell: UICollectionViewCell {
     @IBOutlet weak var friendBigPhotos: UIImageView!
     
-    @IBOutlet weak var likeLabel: UILabel!
+    
+    func configure(photo: Photos) {
+        
+        if let imageUrl = photo.imageURL, let url = URL(string: imageUrl) {
+            let resource = ImageResource(downloadURL: url)
+            friendBigPhotos?.kf.setImage(with: resource)
+        }
+    }
         
 }

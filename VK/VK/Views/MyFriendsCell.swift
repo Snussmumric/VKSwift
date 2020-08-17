@@ -7,20 +7,36 @@
 //
 
 import UIKit
+import Kingfisher
 
-class MyFriendsCell: UITableViewCell {
+final class MyFriendsCell: UITableViewCell {
     
     @IBOutlet weak var friendName: UILabel!
-    @IBOutlet weak var friendImage: UIImageView!
+//    @IBOutlet weak var friendImage: UIImageView!
     @IBOutlet weak var containerView: AvatarView!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
+
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        imageView?.makeCircle()
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    func configure(friend: Users) {
+        friendName?.text = friend.name
+        
+        if let imageUrl = friend.imageUrl50, let url = URL(string: imageUrl) {
+            let resource = ImageResource(downloadURL: url)
+            containerView?.imageView.kf.setImage(with: resource)
+        }
     }
-    
+
+}
+
+extension UIView {
+
+    func makeCircle() {
+        layer.cornerRadius = frame.size.width / 2
+        layer.masksToBounds = true
+    }
 
 }

@@ -14,7 +14,7 @@ class VkAuthViewController: UIViewController, WKNavigationDelegate {
     
     
     let session = Session.instance
-    let vkmethods = VkMethods()
+    let vkmethods = VKService()
     
     @IBOutlet weak var webView: WKWebView!
     
@@ -67,15 +67,11 @@ class VkAuthViewController: UIViewController, WKNavigationDelegate {
         session.token = token
         session.userId = Int(userId)!
         print(session.userId)
-        //        print(fragment)
         print(session.token)
+        performSegue(withIdentifier: "Home", sender: nil)
         
-        vkmethods.getVkFriends()
-        vkmethods.getGroups()
-        vkmethods.getPhotos()
-        vkmethods.getSearchedGroups()
         
-        decisionHandler(.cancel)
+        decisionHandler(.allow)
     }
     
 }

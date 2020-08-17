@@ -10,17 +10,21 @@ import UIKit
 
 class AllGroupsController: UITableViewController {
     
-    var groups = [Group]()
+    var groups: [Groups] = []
+    lazy var service = VKService()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let group1 = Group(name: "MacLovers", image: UIImage(named: "Apple"))
-        let group2 = Group(name: "AndroidLovers", image: UIImage(named: "Android"))
-        let group3 = Group(name: "WindowsLovers", image: UIImage(named: "Windows"))
-        self.groups.append(group1)
-        self.groups.append(group2)
-        self.groups.append(group3)
+        service.getGroups { [weak self] (groups) in
+            self?.groups = groups
+//            self?.filteredFriends = friends
+            self?.tableView.reloadData()
+
+            
+        }
+        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -29,11 +33,8 @@ class AllGroupsController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! AllGroupsCell
-        let currentFriend = self.groups[indexPath.row]
-        cell.allGroupsName.text = currentFriend.name
-        cell.allGroupsImage.image = currentFriend.image
-        
+         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! AllGroupsCell
+        cell.configure(group: groups[indexPath.row])
         return cell
     }
     
