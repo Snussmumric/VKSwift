@@ -17,7 +17,9 @@ class FriendCell: UICollectionViewCell {
         
         if let imageUrl = photo.imageURL, let url = URL(string: imageUrl) {
             let resource = ImageResource(downloadURL: url)
-            friendBigPhotos?.kf.setImage(with: resource)
+            friendBigPhotos?.kf.setImage(with: resource) { [weak self] _ in
+                self?.setNeedsLayout()
+            }
         }
     }
         

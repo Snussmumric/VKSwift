@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AllGroupsController: UITableViewController {
+class AllGroupsController: UITableViewController, UISearchBarDelegate {
     
     var groups: [Groups] = []
     lazy var service = VKService()
@@ -17,14 +17,15 @@ class AllGroupsController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        service.getGroups { [weak self] (groups) in
-            self?.groups = groups
-//            self?.filteredFriends = friends
-            self?.tableView.reloadData()
-
-            
-        }
+        searchGroups()
         
+    }
+    
+    func searchGroups(_ text: String = "") {
+        service.getData(.searchGroups(text: text), Groups.self) { [weak self] (groups: [Groups]) in
+            self?.groups = groups
+            self?.tableView.reloadData()
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -36,6 +37,14 @@ class AllGroupsController: UITableViewController {
          let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! AllGroupsCell
         cell.configure(group: groups[indexPath.row])
         return cell
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchGroups(searchText)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchBar.resignFirstResponder()
     }
     
 }

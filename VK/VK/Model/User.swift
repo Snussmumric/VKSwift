@@ -7,19 +7,22 @@
 //
 
 import UIKit
-//import realmswift
 import RealmSwift
 
 final class Users: Object, Decodable {
     
     @objc dynamic var name: String = ""
-    var imageUrl50: String?
-    var imageUrl100: String?
-    var photos: [String] = []
-    var id: Int = 0
-    var firstName: String = ""
-    var lastName: String = ""
+    @objc dynamic var imageUrl50: String? = ""
+    @objc dynamic var imageUrl100: String? = ""
+//    @objc dynamic var photos: [String] = []
+    @objc dynamic var id: Int = 0
+    @objc dynamic var firstName: String = ""
+    @objc dynamic var lastName: String = ""
 //    var birthDate: String?
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
     
     // MARK: - Decodable
     
