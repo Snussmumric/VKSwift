@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import RealmSwift
 
 final class VKService {
     
@@ -87,8 +88,8 @@ final class VKService {
         
     }
     
-    func getFriends(completion: @escaping ([Users]) -> Void) {
-        getData(.friends) { (data) in
+    func getFriends(completion: @escaping ( [Users]) -> Void) {
+        getData(.friends) { [weak self] (data) in
             guard let data = data else {
                 completion([])
                 return
@@ -97,6 +98,7 @@ final class VKService {
             do {
                 let response = try JSONDecoder().decode(VKResponse<Users>.self, from: data)
                  completion(response.items)
+                self?.saveUsers(response.items)
                 
             } catch {
                 print(error.localizedDescription)
@@ -106,7 +108,7 @@ final class VKService {
     }
     
     func getGroups(completion: @escaping ([Groups]) -> Void) {
-        getData(.groups) { (data) in
+        getData(.groups) { [weak self] (data) in
             guard let data = data else {
                 completion([])
                 return
@@ -115,7 +117,7 @@ final class VKService {
             do {
                 let response = try JSONDecoder().decode(VKResponse<Groups>.self, from: data)
                  completion(response.items)
-                
+                self?.saveGroups(response.items)
             } catch {
                 print(error.localizedDescription)
                 completion([])
@@ -124,7 +126,7 @@ final class VKService {
     }
     
     func getUser(completion: @escaping ([Users]) -> Void) {
-        getData(.groups) { (data) in
+        getData(.groups) {  (data) in
             guard let data = data else {
                 completion([])
                 return
@@ -133,7 +135,6 @@ final class VKService {
             do {
                 let response = try JSONDecoder().decode(VKResponse<Users>.self, from: data)
                  completion(response.items)
-                
             } catch {
                 print(error.localizedDescription)
                 completion([])
@@ -142,7 +143,7 @@ final class VKService {
     }
     
     func getPhotos(ownerID: Int, completion: @escaping ([Photos]) -> Void) {
-        getData(.photos(id: ownerID)) { (data) in
+        getData(.photos(id: ownerID)) { [weak self] (data) in
             guard let data = data else {
                 completion([])
                 return
@@ -151,6 +152,8 @@ final class VKService {
             do {
                 let response = try JSONDecoder().decode(VKResponse<Photos>.self, from: data)
                  completion(response.items)
+                self?.savePhotos(response.items)
+
                 
             } catch {
                 print(error.localizedDescription)
@@ -158,5 +161,42 @@ final class VKService {
             }
         }
     }
+    
+    func saveUsers(_ users: [Users]) {
+        do {
+            let realm = try Realm()
+            
+            try realm.write {
+                realm.add(users)
+            }
+        } catch  {
+            print(error)
+        }
+    }
+    
+    func saveGroups(_ groups: [Groups]) {
+        do {
+            let realm = try Realm()
+            
+            try realm.write {
+                realm.add(groups)
+            }
+        } catch  {
+            print(error)
+        }
+    }
+
+    func savePhotos(_ photos: [Photos]) {
+        do {
+            let realm = try Realm()
+            
+            try realm.write {
+                realm.add(photos)
+            }
+        } catch  {
+            print(error)
+        }
+    }
+
     
 }
