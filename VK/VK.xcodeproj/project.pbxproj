@@ -34,13 +34,13 @@
 		3ABC9DBF24DB39F600687D22 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABC9DBE24DB39F600687D22 /* Photos.swift */; };
 		3ABC9DC224DC23CB00687D22 /* SliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABC9DC124DC23CB00687D22 /* SliderViewController.swift */; };
 		3ACCA2C024DDDC0C00DC40FD /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3ACCA2BF24DDDC0C00DC40FD /* RealmSwift */; };
+		3ACCA2C324EA6A0F00DC40FD /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3ACCA2C224EA6A0F00DC40FD /* Alamofire */; };
 		3AE2FC5E24A87B1D009BFDF2 /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE2FC5D24A87B1D009BFDF2 /* FriendViewController.swift */; };
 		3AE2FC6024A8AD3F009BFDF2 /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE2FC5F24A8AD3F009BFDF2 /* LikeControl.swift */; };
 		3AE719A624BE5C85005388C8 /* TransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE719A524BE5C85005388C8 /* TransitionController.swift */; };
 		3AE719A824BE5ECA005388C8 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE719A724BE5ECA005388C8 /* Animator.swift */; };
 		3AE719AA24BF6A3F005388C8 /* ZoomedPictureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE719A924BF6A3F005388C8 /* ZoomedPictureController.swift */; };
 		3AE719AC24BF9F76005388C8 /* CGRectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE719AB24BF9F76005388C8 /* CGRectExtension.swift */; };
-		3AEB86FF24D18AFD00F2AF30 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3AEB86FE24D18AFD00F2AF30 /* Alamofire */; };
 		3AEB870124D18BC400F2AF30 /* VkAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEB870024D18BC400F2AF30 /* VkAuthViewController.swift */; };
 		3AEB870424D18C3900F2AF30 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEB870324D18C3900F2AF30 /* WebKit.framework */; };
 		3AEFCD3D24AD1DA7000EDA36 /* FriendsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEFCD3C24AD1DA7000EDA36 /* FriendsHeader.swift */; };
@@ -95,11 +95,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3ACCA2C324EA6A0F00DC40FD /* Alamofire in Frameworks */,
 				3AA2A8AC24D4C953002CB130 /* Kingfisher in Frameworks */,
 				3AEB870424D18C3900F2AF30 /* WebKit.framework in Frameworks */,
 				3A628AC324D815F00069394C /* SwiftyJSON in Frameworks */,
 				3ACCA2C024DDDC0C00DC40FD /* RealmSwift in Frameworks */,
-				3AEB86FF24D18AFD00F2AF30 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,13 +109,13 @@
 		3A21E086249F5B7200C604AD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3AA1F11224D1A2D200802C27 /* VKService.swift */,
 				3A21E087249F5B9100C604AD /* User.swift */,
 				3A21E08A249F5BA900C604AD /* Group.swift */,
 				3A57017D24B32DCA0088C958 /* NewsModel.swift */,
+				3ABC9DBE24DB39F600687D22 /* Photos.swift */,
 				3A71D84124CCC0C700C37141 /* Session.swift */,
 				3A628AC424D827AA0069394C /* VKResponse.swift */,
-				3ABC9DBE24DB39F600687D22 /* Photos.swift */,
+				3AA1F11224D1A2D200802C27 /* VKService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -240,10 +240,10 @@
 			);
 			name = VK;
 			packageProductDependencies = (
-				3AEB86FE24D18AFD00F2AF30 /* Alamofire */,
 				3AA2A8AB24D4C953002CB130 /* Kingfisher */,
 				3A628AC224D815F00069394C /* SwiftyJSON */,
 				3ACCA2BF24DDDC0C00DC40FD /* RealmSwift */,
+				3ACCA2C224EA6A0F00DC40FD /* Alamofire */,
 			);
 			productName = VK;
 			productReference = 3A5593C12494B8740024A35A /* VK.app */;
@@ -274,10 +274,10 @@
 			);
 			mainGroup = 3A5593B82494B8740024A35A;
 			packageReferences = (
-				3AEB86FD24D18AFD00F2AF30 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				3AA2A8AA24D4C953002CB130 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				3A628AC124D815F00069394C /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				3ACCA2BE24DDDC0C00DC40FD /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				3ACCA2C124EA6A0F00DC40FD /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 3A5593C22494B8740024A35A /* Products */;
 			projectDirPath = "";
@@ -553,7 +553,7 @@
 				minimumVersion = 5.3.3;
 			};
 		};
-		3AEB86FD24D18AFD00F2AF30 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		3ACCA2C124EA6A0F00DC40FD /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -579,9 +579,9 @@
 			package = 3ACCA2BE24DDDC0C00DC40FD /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
 		};
-		3AEB86FE24D18AFD00F2AF30 /* Alamofire */ = {
+		3ACCA2C224EA6A0F00DC40FD /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3AEB86FD24D18AFD00F2AF30 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = 3ACCA2C124EA6A0F00DC40FD /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */

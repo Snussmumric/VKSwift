@@ -26,7 +26,9 @@ final class MyFriendsCell: UITableViewCell {
         
         if let imageUrl = friend.imageUrl50, let url = URL(string: imageUrl) {
             let resource = ImageResource(downloadURL: url)
-            containerView?.imageView.kf.setImage(with: resource)
+            containerView?.imageView.kf.setImage(with: resource) { [weak self] _ in
+                self?.setNeedsLayout()
+            }
         }
     }
 

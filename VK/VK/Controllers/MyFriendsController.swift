@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MyFriendsController: UITableViewController, UISearchBarDelegate {
     
     // MARK: - Main
     
     lazy var service = VKService()
+    lazy var realm = try! Realm()
+    
     
     
     @IBOutlet weak var friendSearcher: UISearchBar!
@@ -26,14 +29,25 @@ class MyFriendsController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        service.getFriends { [weak self] (friends) in
-            self?.friends = friends
-            self?.filteredFriends = friends
-            self?.tableView.reloadData()
-        }
+        loadFromCache()
+        loadFromNetwork()
         
         friendSearcher.delegate = self
         
+    }
+    
+    func loadFromCache() {
+        let object = realm.objects(Users.self)
+        
+        friends = Array(object)
+        filteredFriends = friends
+        tableView?.reloadData()
+    }
+    
+    func loadFromNetwork() {
+        service.getData(.friends, Users.self) { [weak self] _ in
+            self?.loadFromCache()
+        }
     }
     
     

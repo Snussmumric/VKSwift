@@ -10,9 +10,13 @@ import UIKit
 import Kingfisher
 
 class SliderViewController: UIViewController {
-
+    
     var photos: [Photos] = []
     var currentIndex = 0
+    
+    var transitionController: TransitionController? {
+        return transitioningDelegate as? TransitionController
+    }
     
     // MARK: - Outlets
     
@@ -23,8 +27,10 @@ class SliderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            
-        photos.forEach { addSlide(image: $0) }
+        
+        photos.forEach {
+            addSlide(image: $0)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -35,10 +41,6 @@ class SliderViewController: UIViewController {
     // MARK: - Helpers
     
     private func addSlide(image: Photos) {
-        
-        
-
-        
         let imageView = UIImageView()
         
         if let imageUrl = image.imageURL, let url = URL(string: imageUrl) {
@@ -47,13 +49,55 @@ class SliderViewController: UIViewController {
         }
         
         imageView.contentMode = .scaleAspectFit
+        transitionController?.endView = imageView
+        
         
         stackView.addArrangedSubview(imageView)
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        view.addGestureRecognizer(tap )
+        
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(onPan))
+        view.addGestureRecognizer(pan)
+        
     }
-
+    
+    @objc func onPan(_ sender: UIPanGestureRecognizer) {
+        guard let panView = sender.view else {return}
+        
+        let translation = sender.translation(in: panView)
+        let percent = translation.y / panView.bounds.height
+        
+        switch sender.state {
+        case .began:
+            transitionController?.interactionController = UIPercentDrivenInteractiveTransition()
+            dismiss(animated: true, completion: nil)
+            
+        case .changed:
+            transitionController?.interactionController?.update(percent)
+            
+        case .cancelled:
+            transitionController?.interactionController?.cancel()
+            
+        case .ended:
+            if percent > 0.5 {
+                transitionController?.interactionController?.finish()
+            } else {
+                transitionController?.interactionController?.cancel()
+            }
+            
+        default:
+            break
+        }
+    }
+    
+    @objc func tapped(_ sender: UITapGestureRecognizer) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 extension UIScrollView {

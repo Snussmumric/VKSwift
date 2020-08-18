@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import RealmSwift
 
 extension UIColor {
     convenience init(red: Int, green: Int, blue: Int) {
@@ -41,10 +42,10 @@ class FriendViewController: UIViewController, UICollectionViewDelegate, UICollec
     let transitionController = TransitionController()
     //    let startView: UIImageView? = nil
     
-    //    var photos: [UIImage?] = []
     var photos: [Photos] = []
     var person : Users!
     lazy var service = VKService()
+    lazy var realm = try! Realm()
     
     
     @IBOutlet weak var friendCollectionView: UICollectionView!
@@ -54,12 +55,14 @@ class FriendViewController: UIViewController, UICollectionViewDelegate, UICollec
         super.viewDidLoad()
         personName.text = person.firstName
         personSurname.text = person.lastName
-        service.getPhotos(ownerID: person.id) { [weak self] (photos) in
-            self?.photos = photos
-            self?.friendCollectionView.reloadData()
-//            self?.personCity.text = String(photos.count)
-        }
         
+        loadFromCache()
+        loadFromNetwork()
+        
+
+
+        
+
         
         personalInfoDataView.backgroundColor = UIColor(rgb: 0x92D5F9)
         
@@ -83,6 +86,19 @@ class FriendViewController: UIViewController, UICollectionViewDelegate, UICollec
         
     }
     
+    func loadFromCache() {
+        let object = realm.objects(Photos.self).filter("ownerID == %@", person.id)
+        
+        photos = Array(object)
+        friendCollectionView?.reloadData()
+    }
+    
+    func loadFromNetwork() {
+        service.getData(.photos(id: person.id), Photos.self) { [weak self] _ in
+            self?.loadFromCache()
+        }
+    }
+    
     @objc func tapped(_ sender: UITapGestureRecognizer) {
         print ("You tapped more")
         performSegue(withIdentifier: "segue", sender: UITapGestureRecognizer.self)
@@ -104,6 +120,13 @@ class FriendViewController: UIViewController, UICollectionViewDelegate, UICollec
             controller.title = title
             controller.photos = photos
             controller.currentIndex = indexPath.row
+            controller.transitioningDelegate = transitionController
+            if let imageUrl = person.imageUrl100, let url = URL(string: imageUrl) {
+                let resource = ImageResource(downloadURL: url)
+                transitionController.startView?.kf.setImage(with: resource) 
+            }
+//            transitionController.startView = person.imageUrl100
+
         }
         
     }

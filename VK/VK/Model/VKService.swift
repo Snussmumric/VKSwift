@@ -13,7 +13,6 @@ import RealmSwift
 final class VKService {
     
     let session = Session.instance
-//    var ownerId: Int
     
     enum VKMethod {
         case friends
@@ -21,9 +20,6 @@ final class VKService {
         case groups
         case searchGroups(text: String)
         case users(id: String)
-        
-        
-//        var ownerID: Int
         
         var path: String {
             switch self {
@@ -57,7 +53,7 @@ final class VKService {
         }
     }
     
-    func getData(_ method: VKMethod, completion: @escaping ((Data?) -> Void)) {
+    private func getData(_ method: VKMethod, completion: @escaping ((Data?) -> Void)) {
         var components = URLComponents()
         components.scheme = "https"
         components.host = "api.vk.com"
@@ -88,115 +84,39 @@ final class VKService {
         
     }
     
-    func getFriends(completion: @escaping ( [Users]) -> Void) {
-        getData(.friends) { [weak self] (data) in
-            guard let data = data else {
-                completion([])
-                return
-            }
-            
-            do {
-                let response = try JSONDecoder().decode(VKResponse<Users>.self, from: data)
-                 completion(response.items)
-                self?.saveUsers(response.items)
+    func getData<T: Decodable>(_ method: VKMethod, _ type: T.Type, completion: @escaping ( [T]) -> Void) {
+         getData(method) { [weak self] (data) in
+             guard let data = data else {
+                 completion([])
+                 return
+             }
+             
+             do {
+                 let response = try JSONDecoder().decode(VKResponse<T>.self, from: data)
                 
-            } catch {
-                print(error.localizedDescription)
-                completion([])
-            }
-        }
-    }
-    
-    func getGroups(completion: @escaping ([Groups]) -> Void) {
-        getData(.groups) { [weak self] (data) in
-            guard let data = data else {
-                completion([])
-                return
-            }
-            
-            do {
-                let response = try JSONDecoder().decode(VKResponse<Groups>.self, from: data)
-                 completion(response.items)
-                self?.saveGroups(response.items)
-            } catch {
-                print(error.localizedDescription)
-                completion([])
-            }
-        }
-    }
-    
-    func getUser(completion: @escaping ([Users]) -> Void) {
-        getData(.groups) {  (data) in
-            guard let data = data else {
-                completion([])
-                return
-            }
-            
-            do {
-                let response = try JSONDecoder().decode(VKResponse<Users>.self, from: data)
-                 completion(response.items)
-            } catch {
-                print(error.localizedDescription)
-                completion([])
-            }
-        }
-    }
-    
-    func getPhotos(ownerID: Int, completion: @escaping ([Photos]) -> Void) {
-        getData(.photos(id: ownerID)) { [weak self] (data) in
-            guard let data = data else {
-                completion([])
-                return
-            }
-            
-            do {
-                let response = try JSONDecoder().decode(VKResponse<Photos>.self, from: data)
-                 completion(response.items)
-                self?.savePhotos(response.items)
+                if let objects = response.items as? [Object] {
+                    self?.saveToRealm(objects )
+                }
+                  completion(response.items)
+                 
+             } catch {
+                 print(error.localizedDescription)
+                 completion([])
+             }
+         }
+     }
 
-                
-            } catch {
-                print(error.localizedDescription)
-                completion([])
-            }
-        }
-    }
-    
-    func saveUsers(_ users: [Users]) {
+    private func saveToRealm<T: Object >(_ objects: [T] ) {
         do {
             let realm = try Realm()
             
-            try realm.write {
-                realm.add(users)
+            try realm.write{
+                realm.add(objects, update: .modified)
             }
-        } catch  {
+        } catch {
             print(error)
         }
+        
     }
-    
-    func saveGroups(_ groups: [Groups]) {
-        do {
-            let realm = try Realm()
-            
-            try realm.write {
-                realm.add(groups)
-            }
-        } catch  {
-            print(error)
-        }
-    }
-
-    func savePhotos(_ photos: [Photos]) {
-        do {
-            let realm = try Realm()
-            
-            try realm.write {
-                realm.add(photos)
-            }
-        } catch  {
-            print(error)
-        }
-    }
-
     
 }
