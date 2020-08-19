@@ -35,20 +35,12 @@ class MyFriendsController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewToRealm()
-        //        loadFromCache()
         loadFromNetwork()
         
         friendSearcher.delegate = self
         
     }
     
-    //    func loadFromCache() {
-    //        let object = realm.objects(Users.self)
-    //
-    //        friends = Array(object)
-    //        filteredFriends = friends
-    //        tableView?.reloadData()
-    //    }
     
     func loadFromNetwork() {
         service.getData(.friends, Users.self)

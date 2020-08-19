@@ -39,6 +39,8 @@ class FriendViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var personalInfoView: UIView!
     @IBOutlet weak var personalInfoDataView: UIView!
     
+    var friendCell = FriendCell()
+    
     let transitionController = TransitionController()
     //    let startView: UIImageView? = nil
     
@@ -58,9 +60,10 @@ class FriendViewController: UIViewController, UICollectionViewDelegate, UICollec
         super.viewDidLoad()
         personName.text = person.firstName
         personSurname.text = person.lastName
+        
+        
         bindViewToRealm()
 
-//        loadFromCache()
         loadFromNetwork()
         
 
@@ -85,26 +88,20 @@ class FriendViewController: UIViewController, UICollectionViewDelegate, UICollec
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
         personMainImage.addGestureRecognizer(tap)
         
+
+        
         
         
         
     }
-    
-    func loadFromCache() {
-        let object = realm.objects(Photos.self).filter("ownerID == %@", person.id)
-        
-        photos = Array(object)
-        friendCollectionView?.reloadData()
-    }
-    
 
     
     func loadFromNetwork() {
-        service.getData(.photos(id: person.id), Groups.self)
+        service.getData(.photos(id: person.id), Photos.self)
     }
-    
+
     private func bindViewToRealm () {
-        items = realm.objects(Photos.self)
+        items = realm.objects(Photos.self).filter("ownerID == %@", person.id)
         notificationToken = items.observe({ [weak self] (changes) in
             switch changes {
             case .initial(let items):
@@ -121,8 +118,11 @@ class FriendViewController: UIViewController, UICollectionViewDelegate, UICollec
 
     
     @objc func tapped(_ sender: UITapGestureRecognizer) {
-        print ("You tapped more")
         performSegue(withIdentifier: "segue", sender: UITapGestureRecognizer.self)
+    }
+    @objc func tappedCell(_ sender: UITapGestureRecognizer) {
+        print ("You tapped cell")
+        performSegue(withIdentifier: "slider", sender: UITapGestureRecognizer.self)
     }
     
     
@@ -136,18 +136,20 @@ class FriendViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         if
             let controller = segue.destination as? SliderViewController,
-            let indexPath = friendCollectionView.indexPathsForSelectedItems?.first
+            let indexPath = friendCollectionView.indexPathsForSelectedItems?.first,
+            let cell = friendCollectionView.cellForItem(at: indexPath) as? FriendCell
         {
             controller.title = title
             controller.photos = photos
             controller.currentIndex = indexPath.row
             controller.transitioningDelegate = transitionController
-            if let imageUrl = person.imageUrl100, let url = URL(string: imageUrl) {
-                let resource = ImageResource(downloadURL: url)
-                transitionController.startView?.kf.setImage(with: resource) 
-            }
-//            transitionController.startView = person.imageUrl100
-
+            transitionController.startView = cell.friendBigPhotos
+//            if let imageUrl = person.imageUrl100, let url = URL(string: imageUrl) {
+//                let resource = ImageResource(downloadURL: url)
+//                transitionController.startView?.kf.setImage(with: resource)
+//            }
+            //            transitionController.startView = person.imageUrl100
+            
         }
         
     }

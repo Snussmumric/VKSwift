@@ -460,7 +460,7 @@
                                         <size key="customSize" width="158" height="153"/>
                                         <connections>
                                             <outlet property="friendBigPhotos" destination="5me-dO-alh" id="uk3-M7-Nz5"/>
-                                            <segue destination="dOo-w0-ifI" kind="show" id="jTs-pM-jXL"/>
+                                            <segue destination="dOo-w0-ifI" kind="presentation" id="u2s-Vs-wL5"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -743,14 +743,14 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="dOo-w0-ifI" customClass="SliderViewController" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bbf-qm-k3T">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gk2-N3-t4G">
-                                <rect key="frame" x="0.0" y="56" width="414" height="703"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="infinite" translatesAutoresizingMaskIntoConstraints="NO" id="bNc-TT-wGT">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="703"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -785,7 +785,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="iT6-xZ-E0p"/>
+        <segue reference="Eg6-eU-k6s"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Image" width="200" height="150"/>

@@ -12,7 +12,7 @@ import Kingfisher
 class FriendCell: UICollectionViewCell {
     @IBOutlet weak var friendBigPhotos: UIImageView!
     
-
+    
     
     
     func configure(photo: Photos) {
@@ -24,5 +24,7 @@ class FriendCell: UICollectionViewCell {
             }
         }
     }
+    
+    
         
 }
