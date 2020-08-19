@@ -46,6 +46,9 @@ class FriendViewController: UIViewController, UICollectionViewDelegate, UICollec
     var person : Users!
     lazy var service = VKService()
     lazy var realm = try! Realm()
+    var notificationToken: NotificationToken?
+    var items: Results<Photos>!
+
     
     
     @IBOutlet weak var friendCollectionView: UICollectionView!
@@ -55,8 +58,9 @@ class FriendViewController: UIViewController, UICollectionViewDelegate, UICollec
         super.viewDidLoad()
         personName.text = person.firstName
         personSurname.text = person.lastName
-        
-        loadFromCache()
+        bindViewToRealm()
+
+//        loadFromCache()
         loadFromNetwork()
         
 
@@ -93,11 +97,28 @@ class FriendViewController: UIViewController, UICollectionViewDelegate, UICollec
         friendCollectionView?.reloadData()
     }
     
+
+    
     func loadFromNetwork() {
-        service.getData(.photos(id: person.id), Photos.self) { [weak self] _ in
-            self?.loadFromCache()
-        }
+        service.getData(.photos(id: person.id), Groups.self)
     }
+    
+    private func bindViewToRealm () {
+        items = realm.objects(Photos.self)
+        notificationToken = items.observe({ [weak self] (changes) in
+            switch changes {
+            case .initial(let items):
+                self?.photos = Array(items)
+                self?.friendCollectionView.reloadData()
+            case .update:
+                self?.photos = Array((self?.items)!)
+                self?.friendCollectionView.reloadData()
+            case .error(let error):
+                fatalError("\(error)")
+            }
+        })
+    }
+
     
     @objc func tapped(_ sender: UITapGestureRecognizer) {
         print ("You tapped more")
