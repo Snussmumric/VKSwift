@@ -39,6 +39,8 @@ class FriendViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var personalInfoView: UIView!
     @IBOutlet weak var personalInfoDataView: UIView!
     
+    var friendCell = FriendCell()
+    
     let transitionController = TransitionController()
     //    let startView: UIImageView? = nil
     
@@ -46,6 +48,9 @@ class FriendViewController: UIViewController, UICollectionViewDelegate, UICollec
     var person : Users!
     lazy var service = VKService()
     lazy var realm = try! Realm()
+    var notificationToken: NotificationToken?
+    var items: Results<Photos>!
+
     
     
     @IBOutlet weak var friendCollectionView: UICollectionView!
@@ -56,7 +61,9 @@ class FriendViewController: UIViewController, UICollectionViewDelegate, UICollec
         personName.text = person.firstName
         personSurname.text = person.lastName
         
-        loadFromCache()
+        
+        bindViewToRealm()
+
         loadFromNetwork()
         
 
@@ -81,27 +88,41 @@ class FriendViewController: UIViewController, UICollectionViewDelegate, UICollec
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
         personMainImage.addGestureRecognizer(tap)
         
+
+        
         
         
         
     }
-    
-    func loadFromCache() {
-        let object = realm.objects(Photos.self).filter("ownerID == %@", person.id)
-        
-        photos = Array(object)
-        friendCollectionView?.reloadData()
-    }
+
     
     func loadFromNetwork() {
-        service.getData(.photos(id: person.id), Photos.self) { [weak self] _ in
-            self?.loadFromCache()
-        }
+        service.getData(.photos(id: person.id), Photos.self)
     }
+
+    private func bindViewToRealm () {
+        items = realm.objects(Photos.self).filter("ownerID == %@", person.id)
+        notificationToken = items.observe({ [weak self] (changes) in
+            switch changes {
+            case .initial(let items):
+                self?.photos = Array(items)
+                self?.friendCollectionView.reloadData()
+            case .update:
+                self?.photos = Array((self?.items)!)
+                self?.friendCollectionView.reloadData()
+            case .error(let error):
+                fatalError("\(error)")
+            }
+        })
+    }
+
     
     @objc func tapped(_ sender: UITapGestureRecognizer) {
-        print ("You tapped more")
         performSegue(withIdentifier: "segue", sender: UITapGestureRecognizer.self)
+    }
+    @objc func tappedCell(_ sender: UITapGestureRecognizer) {
+        print ("You tapped cell")
+        performSegue(withIdentifier: "slider", sender: UITapGestureRecognizer.self)
     }
     
     
@@ -115,18 +136,20 @@ class FriendViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         if
             let controller = segue.destination as? SliderViewController,
-            let indexPath = friendCollectionView.indexPathsForSelectedItems?.first
+            let indexPath = friendCollectionView.indexPathsForSelectedItems?.first,
+            let cell = friendCollectionView.cellForItem(at: indexPath) as? FriendCell
         {
             controller.title = title
             controller.photos = photos
             controller.currentIndex = indexPath.row
             controller.transitioningDelegate = transitionController
-            if let imageUrl = person.imageUrl100, let url = URL(string: imageUrl) {
-                let resource = ImageResource(downloadURL: url)
-                transitionController.startView?.kf.setImage(with: resource) 
-            }
-//            transitionController.startView = person.imageUrl100
-
+            transitionController.startView = cell.friendBigPhotos
+//            if let imageUrl = person.imageUrl100, let url = URL(string: imageUrl) {
+//                let resource = ImageResource(downloadURL: url)
+//                transitionController.startView?.kf.setImage(with: resource)
+//            }
+            //            transitionController.startView = person.imageUrl100
+            
         }
         
     }

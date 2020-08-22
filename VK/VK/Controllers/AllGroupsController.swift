@@ -22,7 +22,7 @@ class AllGroupsController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchGroups(_ text: String = "") {
-        service.getData(.searchGroups(text: text), Groups.self) { [weak self] (groups: [Groups]) in
+        service.getData(.searchGroups(text: text), Groups.self, shouldCache: false) { [weak self] (groups: [Groups]) in
             self?.groups = groups
             self?.tableView.reloadData()
         }

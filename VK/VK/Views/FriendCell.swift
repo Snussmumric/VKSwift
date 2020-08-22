@@ -13,6 +13,8 @@ class FriendCell: UICollectionViewCell {
     @IBOutlet weak var friendBigPhotos: UIImageView!
     
     
+    
+    
     func configure(photo: Photos) {
         
         if let imageUrl = photo.imageURL, let url = URL(string: imageUrl) {
@@ -22,5 +24,7 @@ class FriendCell: UICollectionViewCell {
             }
         }
     }
+    
+    
         
 }

@@ -84,24 +84,27 @@ final class VKService {
         
     }
     
-    func getData<T: Decodable>(_ method: VKMethod, _ type: T.Type, completion: @escaping ( [T]) -> Void) {
+    func getData<T: Decodable>(_ method: VKMethod,
+                               _ type: T.Type,
+                               shouldCache: Bool = true,
+                               completion:  (([T]) -> Void)? = nil) {
          getData(method) { [weak self] (data) in
              guard let data = data else {
-                 completion([])
+                 completion?([])
                  return
              }
              
              do {
                  let response = try JSONDecoder().decode(VKResponse<T>.self, from: data)
                 
-                if let objects = response.items as? [Object] {
+                if shouldCache, let objects = response.items as? [Object] {
                     self?.saveToRealm(objects )
                 }
-                  completion(response.items)
+                  completion?(response.items)
                  
              } catch {
                  print(error.localizedDescription)
-                 completion([])
+                 completion?([])
              }
          }
      }
