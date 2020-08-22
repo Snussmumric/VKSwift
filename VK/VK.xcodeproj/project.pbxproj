@@ -27,9 +27,9 @@
 		3A57018424B6EADE0088C958 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A57018324B6EADE0088C958 /* LoadingView.swift */; };
 		3A57018624B6EE420088C958 /* LoadingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A57018524B6EE420088C958 /* LoadingController.swift */; };
 		3A5B5C4124EC6072008AD877 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5B5C4024EC6072008AD877 /* ArrayExtension.swift */; };
-		3A5B5C4324ED6D5B008AD877 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A5B5C4224ED6D5A008AD877 /* GoogleService-Info.plist */; };
 		3A5B5C4524F1369D008AD877 /* FirebaseDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5B5C4424F1369D008AD877 /* FirebaseDB.swift */; };
 		3A5B5C4724F142E0008AD877 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5B5C4624F142E0008AD877 /* DateExtensions.swift */; };
+		3A5B5C4924F149D4008AD877 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A5B5C4824F149D4008AD877 /* GoogleService-Info.plist */; };
 		3A628AC324D815F00069394C /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 3A628AC224D815F00069394C /* SwiftyJSON */; };
 		3A628AC524D827AA0069394C /* VKResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A628AC424D827AA0069394C /* VKResponse.swift */; };
 		3A71D84224CCC0C700C37141 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A71D84124CCC0C700C37141 /* Session.swift */; };
@@ -77,9 +77,9 @@
 		3A57018324B6EADE0088C958 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		3A57018524B6EE420088C958 /* LoadingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingController.swift; sourceTree = "<group>"; };
 		3A5B5C4024EC6072008AD877 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
-		3A5B5C4224ED6D5A008AD877 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3A5B5C4424F1369D008AD877 /* FirebaseDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDB.swift; sourceTree = "<group>"; };
 		3A5B5C4624F142E0008AD877 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		3A5B5C4824F149D4008AD877 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3A628AC424D827AA0069394C /* VKResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKResponse.swift; sourceTree = "<group>"; };
 		3A71D84124CCC0C700C37141 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		3A77F19E24ACF043008F71C2 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
@@ -205,7 +205,7 @@
 			children = (
 				3A5593C42494B8740024A35A /* AppDelegate.swift */,
 				3A5593CD2494B8760024A35A /* Assets.xcassets */,
-				3A5B5C4224ED6D5A008AD877 /* GoogleService-Info.plist */,
+				3A5B5C4824F149D4008AD877 /* GoogleService-Info.plist */,
 				3A5593D22494B8760024A35A /* Info.plist */,
 				3A5593C22494B8740024A35A /* Products */,
 			);
@@ -325,7 +325,7 @@
 			files = (
 				3AEFCD4124ADA93A000EDA36 /* NewsCell.xib in Resources */,
 				3A5593CE2494B8760024A35A /* Assets.xcassets in Resources */,
-				3A5B5C4324ED6D5B008AD877 /* GoogleService-Info.plist in Resources */,
+				3A5B5C4924F149D4008AD877 /* GoogleService-Info.plist in Resources */,
 				3A5593CC2494B8740024A35A /* Main.storyboard in Resources */,
 				3A57018224B337AA0088C958 /* NewsPhotoCollectionCell.xib in Resources */,
 			);
@@ -557,10 +557,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "-.VK";
+				PRODUCT_BUNDLE_IDENTIFIER = com.snussmumric.VK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -576,10 +576,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "-.VK";
+				PRODUCT_BUNDLE_IDENTIFIER = com.snussmumric.VK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

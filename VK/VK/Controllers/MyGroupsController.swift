@@ -93,9 +93,17 @@ class MyGroupsController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let group = filteredGroups[indexPath.row]
             filteredGroups.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } 
+            let groupDB = FirebaseDB(groupID: group.id)
+
+            ref
+            .child(String(session.userId))
+            .child("Groups")
+            .child(String(groupDB.toDatabase()))
+            .removeValue()
+        }
     }
     
     // MARK: - Search
