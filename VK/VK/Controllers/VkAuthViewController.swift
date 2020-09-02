@@ -9,12 +9,20 @@
 import UIKit
 import WebKit
 import Alamofire
+import FirebaseDatabase
 
 class VkAuthViewController: UIViewController, WKNavigationDelegate {
     
     
     let session = Session.instance
     let vkmethods = VKService()
+
+    let date = Date()
+
+    
+    lazy var database = Database.database()
+    lazy var ref: DatabaseReference = self.database.reference(withPath: "users")
+
     
     @IBOutlet weak var webView: WKWebView!
     
@@ -68,6 +76,9 @@ class VkAuthViewController: UIViewController, WKNavigationDelegate {
         session.userId = Int(userId)!
         print(session.userId)
         print(session.token)
+        ref
+            .child(String(session.userId))
+            .setValue(["date": Date().shortDate, "time": Date().shortTime])
         performSegue(withIdentifier: "Home", sender: nil)
         
         

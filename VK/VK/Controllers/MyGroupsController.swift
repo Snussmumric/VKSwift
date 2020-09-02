@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import FirebaseDatabase
 
 class MyGroupsController: UITableViewController, UISearchBarDelegate {
     
@@ -16,29 +17,44 @@ class MyGroupsController: UITableViewController, UISearchBarDelegate {
     var service = VKService()
     var groups: [Groups] = []
     var filteredGroups: [Groups] = []
+    let session = Session.instance
     
     var notificationToken: NotificationToken?
     var items: Results<Groups>!
+    lazy var database = Database.database()
+    var firebaseDB: [FirebaseDB] = []
+    lazy var ref: DatabaseReference = self.database.reference(withPath: "users")
+    
+    
     
     lazy var realm = try! Realm()
     
     @IBAction func addGroup(segue: UIStoryboardSegue) {
-        if segue.identifier == "addGroup" {
-            let allGroupsController = segue.source as! AllGroupsController
-            
-            if let indexPath = allGroupsController.tableView.indexPathForSelectedRow {
-                let group = allGroupsController.groups[indexPath.row]
-                groups.append(group)
-                tableView.reloadData()
-            }
+        guard
+            let allGroupsController = segue.source as? AllGroupsController,
+            let indexPath = allGroupsController.tableView.indexPathForSelectedRow
+            else {return}
+        
+        let group = allGroupsController.groups[indexPath.row]
+        
+        if !groups.contains(group){
+            filteredGroups.append(group)
+            let groupDB = FirebaseDB(groupID: group.id)
+            ref
+                .child(String(session.userId))
+                .child("Groups")
+                .child(String(groupDB.toDatabase()))
+                .setValue([group.name, group.imageUrl])
+            tableView.reloadData()
         }
         
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewToRealm()
-
+        
         loadFromNetwork()
         searchBar.delegate = self
         
@@ -77,9 +93,17 @@ class MyGroupsController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let group = filteredGroups[indexPath.row]
             filteredGroups.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } 
+            let groupDB = FirebaseDB(groupID: group.id)
+
+            ref
+            .child(String(session.userId))
+            .child("Groups")
+            .child(String(groupDB.toDatabase()))
+            .removeValue()
+        }
     }
     
     // MARK: - Search
@@ -103,6 +127,6 @@ class MyGroupsController: UITableViewController, UISearchBarDelegate {
             filteredGroups = Array(items)
         }
     }
-
+    
     
 }
