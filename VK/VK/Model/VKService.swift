@@ -20,6 +20,8 @@ final class VKService {
         case groups
         case searchGroups(text: String)
         case users(id: String)
+        case news
+        case groupID(id: Int)
         
         var path: String {
             switch self {
@@ -33,6 +35,10 @@ final class VKService {
                 return "/method/users.get"
             case .searchGroups:
                 return "/method/groups.search"
+            case .news:
+                return "/method/newsfeed.get"
+            case .groupID:
+                return "/method/groups.getById"
             }
         }
         
@@ -49,6 +55,11 @@ final class VKService {
                 return ["extended": "1"]
             case let .searchGroups(text):
                 return ["q": text]
+            case .news:
+                return ["filter": "post"]
+//                return ["filter": "post,photo,photo_tag,wall_photo"]
+            case let .groupID(id):
+                return ["group_id": String(id)]
             }
         }
     }
@@ -60,7 +71,8 @@ final class VKService {
         components.path = method.path
         let queryItems = [
             URLQueryItem(name: "access_token", value: session.token),
-            URLQueryItem(name: "v", value: "5.68")
+//            URLQueryItem(name: "scope", value: "wall,friends,photos"),
+            URLQueryItem(name: "v", value: "5.122")
         ]
         let methodQueryItems = method.parameters.map { URLQueryItem(name: $0, value: $1) }
         components.queryItems = queryItems + methodQueryItems
@@ -77,6 +89,7 @@ final class VKService {
             }
             DispatchQueue.main.async {
                 completion(data)
+//                print(data)
             }
         }
         
@@ -98,7 +111,7 @@ final class VKService {
                  let response = try JSONDecoder().decode(VKResponse<T>.self, from: data)
                 
                 if shouldCache, let objects = response.items as? [Object] {
-                    self?.saveToRealm(objects )
+                    self?.saveToRealm(objects)
                 }
                   completion?(response.items)
                  

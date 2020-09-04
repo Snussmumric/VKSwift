@@ -171,9 +171,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="qb7-0a-TXo" kind="relationship" relationship="viewControllers" id="xxC-44-i9c"/>
-                        <segue destination="rVn-xA-fE6" kind="relationship" relationship="viewControllers" id="4C5-F0-mNx"/>
                         <segue destination="Qli-Ft-8tJ" kind="relationship" relationship="viewControllers" id="dVp-Th-oT0"/>
+                        <segue destination="rVn-xA-fE6" kind="relationship" relationship="viewControllers" id="4C5-F0-mNx"/>
+                        <segue destination="qb7-0a-TXo" kind="relationship" relationship="viewControllers" id="xxC-44-i9c"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0cZ-om-MRw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -603,7 +603,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier=" Cell" id="Zmq-dq-x3y" customClass="NewsCell" customModule="VK" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Zmq-dq-x3y" customClass="NewsCell">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zmq-dq-x3y" id="reC-VM-wap">
