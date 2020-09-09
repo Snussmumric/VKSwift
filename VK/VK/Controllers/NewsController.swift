@@ -7,15 +7,25 @@
 //
 
 import UIKit
+import RealmSwift
 
 class NewsController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    let news = NewsModel.fake
+    
+    lazy var service = VKService()
+    
+    var news: [News] = []
+//    let news = NewsModel.fake
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "NewsCell", bundle: nil), forCellReuseIdentifier: "Cell")
-
+        tableView.register(UINib(nibName: "NewsCell", bundle: nil), forCellReuseIdentifier: "NewsCell")
+        tableView.register(UINib(nibName: "NewsWallPhotoCell", bundle: nil), forCellReuseIdentifier: "NewsWallPhotoCell")
+        service.getData(.news, News.self, shouldCache: false) {
+            [weak self] (news: [News]) in
+            self?.news = news
+            self?.tableView.reloadData()
+        }
     }
 
     // MARK: - Table view data source
@@ -29,16 +39,32 @@ class NewsController: UITableViewController, UICollectionViewDelegate, UICollect
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! NewsCell
-        cell.configure(model: news[indexPath.row])
+        let item = news[indexPath.row]
+        print(item.type)
+        switch item.type {
+        case "post":
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
+            cell.configure(model: news[indexPath.row])
+            return cell
+        case "wall_photo":
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsWallPhotoCell", for: indexPath) as! NewsWallPhotoCell
+            cell.configure(model: news[indexPath.row])
+            return cell
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
+            cell.configure(model: news[indexPath.row])
+            return cell
+            
+
+        }
+
         
-        return cell
     }
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let cell = cell as? NewsCell else {return}
-        cell.setCollectionDelegate(self, for: indexPath.row)
-    }
+//
+//    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        guard let cell = cell as? NewsPostCell else {return}
+//        cell.setCollectionDelegate(self, for: indexPath.row)
+//    }
 
 
     
@@ -52,7 +78,8 @@ class NewsController: UITableViewController, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let imagesCount = news[collectionView.tag].images.count
+//        let imagesCount = news[collectionView.tag].images.count
+        let imagesCount = 0
         
         return imagesCount > Constants.maxPhotosCount ? Constants.maxPhotosCount : imagesCount
     }
@@ -61,16 +88,17 @@ class NewsController: UITableViewController, UICollectionViewDelegate, UICollect
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! NewsPhotoCollectionCell
         
-        let newsModel = news[collectionView.tag]
-        let image = news[collectionView.tag].images[indexPath.row]
+//        let newsModel = news[collectionView.tag]
+//        let image = news[collectionView.tag].images[indexPath.row]
+        let image = UIImage(systemName: "Person")
         cell.photoImageView.image = image
         
-        if indexPath.row == Constants.maxPhotosCount - 1 {
-            let count = newsModel.images.count - Constants.maxPhotosCount
-            cell.countLabel.text = "+\(count)"
-            cell.containerView.isHidden = count == 0
-
-        }
+//        if indexPath.row == Constants.maxPhotosCount - 1 {
+//            let count = newsModel.images.count - Constants.maxPhotosCount
+//            cell.countLabel.text = "+\(count)"
+//            cell.containerView.isHidden = count == 0
+//
+//        }
         
         return cell
 
