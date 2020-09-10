@@ -70,7 +70,7 @@ class MyGroupsController: UITableViewController, UISearchBarDelegate {
         notificationToken = items.observe({ [weak self] (changes) in
             switch changes {
             case .initial(let items):
-                self?.filteredGroups =  Array(  items)
+                self?.filteredGroups =  Array(items)
                 self?.tableView.reloadData()
             case .update:
                 self?.filteredGroups(text: self?.searchBar.text)

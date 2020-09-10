@@ -9,57 +9,33 @@
 import UIKit
 import RealmSwift
 
-final class News: Object, Decodable {
+class News: Decodable {
     
-    @objc dynamic var type: String = ""
-    @objc dynamic var author: Int = 0
-    @objc dynamic var date: Double = 0
-    @objc dynamic var text: String? = ""
-    @objc dynamic var commentsCount: Int = 0
-    @objc dynamic var likesCount: Int = 0
-    @objc dynamic var repostsCount: Int = 0
-    @objc dynamic var viewsCount: Int = 0
-
+    var type: String = ""
+    var author: Int = 0
+    var date: Double = 0
+    var text: String? = ""
+    var commentsCount: Int = 0
+    var likesCount: Int = 0
+    var repostsCount: Int = 0
+    var viewsCount: Int = 0
+    
     
     enum CodingKeys: String, CodingKey {
         case type
         case author = "source_id"
         case date
         case text
-//        case attachments
-//        case comments
-//        case likes
-//        case reposts
-//        case views
+        //        case attachments
+        case comments
+        case likes
+        case reposts
+        case views
+        case count
     }
-//
-//    enum AttachmentsKeys: String, CodingKey {
-//        case type
-//        case photo
-//    }
-//
-//    enum PhotoKeys: String, CodingKey {
-//        case sizes
-//    }
+
     
-//    enum CommentKeys: String, CodingKey {
-//        case commentsCount = "count"
-//    }
-//
-//    enum LikesKeys: String, CodingKey {
-//        case likesCount = "count"
-//    }
-//
-//    enum RepostsKeys: String, CodingKey {
-//        case repostsCount = "count"
-//    }
-//
-//    enum ViewsKeys: String, CodingKey {
-//        case viewsCount = "count"
-//    }
-    
-    convenience init(from decoder: Decoder) throws {
-        self.init()
+    required init(from decoder: Decoder) throws {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.type = try container.decode(String.self, forKey: .type)
@@ -67,30 +43,29 @@ final class News: Object, Decodable {
         self.date = try container.decode(Double.self, forKey: .date)
         self.text = try container.decodeIfPresent(String.self, forKey: .text) ?? ""
         
-//        var attachmentsValues = try container.nestedUnkeyedContainer(forKey: .attachments)
-//        let firstAttachmentValue = try attachmentsValues.nestedContainer(keyedBy: AttachmentsKeys.self)
-//        self.photo = try firstAttachmentValue.decodeIfPresent(<#T##type: Bool.Type##Bool.Type#>, forKey: <#T##KeyedDecodingContainer<AttachmentsKeys>.Key#>)
+        if let nestedContainer = try? container.nestedContainer(keyedBy: CodingKeys.self, forKey: .likes) {
+            self.likesCount = try nestedContainer.decode(Int.self,forKey: .count)
+        }
+        if let nestedContainer = try? container.nestedContainer(keyedBy: CodingKeys.self, forKey: .comments) {
+            self.commentsCount = try nestedContainer.decode(Int.self,forKey: .count)
+        }
+        if let nestedContainer = try? container.nestedContainer(keyedBy: CodingKeys.self, forKey: .reposts) {
+            self.repostsCount = try nestedContainer.decode(Int.self,forKey: .count)
+        }
+        if let nestedContainer = try? container.nestedContainer(keyedBy: CodingKeys.self, forKey: .views) {
+            self.viewsCount = try nestedContainer.decode(Int.self,forKey: .count)
+        }
+
         
-//        let commentValues = try container.nestedContainer(keyedBy: CommentKeys.self, forKey: .comments)
-//        self.commentsCount = try commentValues.decodeIfPresent(Int.self, forKey: .commentsCount) ?? 0
-//
-//        let likesValues = try container.nestedContainer(keyedBy: LikesKeys.self, forKey: .likes)
-//        self.likesCount = try likesValues.decodeIfPresent(Int.self, forKey: .likesCount) ?? 0
-//
-//        let repostsValues = try container.nestedContainer(keyedBy: RepostsKeys.self, forKey: .reposts)
-//        self.repostsCount = try repostsValues.decodeIfPresent(Int.self, forKey: .repostsCount) ?? 0
-//
-//        let viewsValues = try container.nestedContainer(keyedBy: ViewsKeys.self, forKey: .views)
-//        self.viewsCount = try viewsValues.decodeIfPresent(Int.self, forKey: .viewsCount) ?? 0
-
-
-
     }
-    
-    
 }
 
 
+
+enum NewsItemType: String {
+    case post
+    case photo
+}
 
 //struct NewsModel {
 //

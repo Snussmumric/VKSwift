@@ -19,7 +19,7 @@ final class VKService {
         case photos(id: Int)
         case groups
         case searchGroups(text: String)
-        case users(id: String)
+        case users(id: Int)
         case news
         case groupID(id: Int)
         
@@ -49,15 +49,15 @@ final class VKService {
             case let .photos(id):
                 return ["owner_id": String(id)]
             case let .users(id):
-//                let param =
-                return ["user_ids": id, "fields": "photo_50"]
+                //                let param =
+                return ["user_ids": String(id), "fields": "photo_50"]
             case .groups:
                 return ["extended": "1"]
             case let .searchGroups(text):
                 return ["q": text]
             case .news:
-                return ["filter": "post"]
-//                return ["filter": "post,photo,photo_tag,wall_photo"]
+                return ["filter": "post,wall_photo"]
+            //                return ["filter": "post,photo,photo_tag,wall_photo"]
             case let .groupID(id):
                 return ["group_id": String(id)]
             }
@@ -71,7 +71,6 @@ final class VKService {
         components.path = method.path
         let queryItems = [
             URLQueryItem(name: "access_token", value: session.token),
-//            URLQueryItem(name: "scope", value: "wall,friends,photos"),
             URLQueryItem(name: "v", value: "5.122")
         ]
         let methodQueryItems = method.parameters.map { URLQueryItem(name: $0, value: $1) }
@@ -89,7 +88,7 @@ final class VKService {
             }
             DispatchQueue.main.async {
                 completion(data)
-//                print(data)
+                //                print(data)
             }
         }
         
@@ -101,27 +100,70 @@ final class VKService {
                                _ type: T.Type,
                                shouldCache: Bool = true,
                                completion:  (([T]) -> Void)? = nil) {
-         getData(method) { [weak self] (data) in
-             guard let data = data else {
-                 completion?([])
-                 return
-             }
-             
-             do {
-                 let response = try JSONDecoder().decode(VKResponse<T>.self, from: data)
-                
+        getData(method) { [weak self] (data) in
+            guard let data = data else {
+                completion?([])
+                return
+            }
+            
+            do {
+                let response = try JSONDecoder().decode(VKResponse<T>.self, from: data)
                 if shouldCache, let objects = response.items as? [Object] {
                     self?.saveToRealm(objects)
                 }
-                  completion?(response.items)
-                 
-             } catch {
-                 print(error.localizedDescription)
-                 completion?([])
-             }
-         }
-     }
+                completion?(response.items)
+            } catch {
+                print(error.localizedDescription)
+                completion?([])
+            }
+        }
+    }
+    
 
+    
+    func getNews<T: News>(_ type: T.Type,
+                          completion:  (([T]) -> Void)? = nil) {
+        DispatchQueue.global(qos: .utility).async {
+            
+            self.getData(.news) { (data) in
+                guard let data = data else {
+                    completion?([])
+                    return
+                }
+                
+                do {
+                    let response = try JSONDecoder().decode(NewsResponse<T>.self, from: data)
+                    completion?(response.items)
+                } catch {
+                    print(error.localizedDescription)
+                    completion?([])
+                }
+            }
+        }
+    }
+    
+    func getPerson<T: Decodable>(userID: Int,
+                                 _ type: T.Type,
+                                 completion:  (([T]) -> Void)? = nil) {
+        DispatchQueue.global(qos: .utility).async {
+            
+            self.getData(.users(id: userID)) { (data) in
+                guard let data = data else {
+                    completion?([])
+                    return
+                }
+                
+                do {
+                    let response = try JSONDecoder().decode(VKResponse<T>.self, from: data)
+                    completion?(response.items)
+                } catch {
+                    print(error.localizedDescription)
+                    completion?([])
+                }
+            }
+        }
+    }
+    
     private func saveToRealm<T: Object >(_ objects: [T] ) {
         do {
             let realm = try Realm()
