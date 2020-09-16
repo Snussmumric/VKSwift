@@ -49,11 +49,11 @@ class NewsController: UITableViewController, UICollectionViewDelegate, UICollect
         let item = news[indexPath.row]
         print(item.type)
         switch item.type {
-        case "wall_photo":
+        case .photo:
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsWallPhotoCell", for: indexPath) as! NewsWallPhotoCell
             cell.configure(model: news[indexPath.row])
             return cell
-        default:
+        case .post:
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
             cell.configure(model: news[indexPath.row])
             return cell

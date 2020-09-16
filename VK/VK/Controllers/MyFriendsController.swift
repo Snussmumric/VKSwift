@@ -13,7 +13,7 @@ class MyFriendsController: UITableViewController, UISearchBarDelegate {
     
     // MARK: - Main
     
-    lazy var service = VKService()
+    lazy var service = VKFriendService()
     lazy var realm = try! Realm()
     var notificationToken: NotificationToken?
     var items: Results<Users>!
@@ -43,7 +43,8 @@ class MyFriendsController: UITableViewController, UISearchBarDelegate {
     
     
     func loadFromNetwork() {
-        service.getData(.friends, Users.self)
+//        service.getData(.friends, Users.self)
+        service.getFriends() 
     }
     
     private func bindViewToRealm () {

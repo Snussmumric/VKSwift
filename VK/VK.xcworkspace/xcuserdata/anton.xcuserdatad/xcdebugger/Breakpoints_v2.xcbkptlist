@@ -7,129 +7,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1C48D54E-1889-4196-9771-257BC2C07517"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK/Controllers/NewsController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "tableView(_:numberOfRowsInSection:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C055919B-AFC4-48AE-8C79-4A5F5CA3EF58"
+            uuid = "349D54C6-CC89-4CD0-9EC3-002ED2447585"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VK/Model/VKService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "getData(_:_:shouldCache:completion:)"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "getNews(_:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AB3026FF-6D07-4F22-ACC5-0D10FF78D30D"
+            uuid = "6CBF226E-F441-492A-9AA0-969C32E59919"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VK/Model/VKService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
-            landmarkName = "getData(_:_:shouldCache:completion:)"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "getNews(_:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "AB3026FF-6D07-4F22-ACC5-0D10FF78D30D - b30d68ccdd99c3c6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;) -&gt; () in VK.VKService.getData&lt;A where A: Swift.Decodable&gt;(_: VK.VKService.VKMethod, _: A.Type, shouldCache: Swift.Bool, completion: Swift.Optional&lt;(Swift.Array&lt;A&gt;) -&gt; ()&gt;) -&gt; ()"
-                  moduleName = "VK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/anton/Documents/Swift_learning/VKSwift/VK/VK/Model/VKService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "115"
-                  endingLineNumber = "115"
-                  offsetFromSymbolStart = "1281">
-               </Location>
-               <Location
-                  uuid = "AB3026FF-6D07-4F22-ACC5-0D10FF78D30D - b30d68ccdd99c3c6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;) -&gt; () in VK.VKService.getData&lt;A where A: Swift.Decodable&gt;(_: VK.VKService.VKMethod, _: A.Type, shouldCache: Swift.Bool, completion: Swift.Optional&lt;(Swift.Array&lt;A&gt;) -&gt; ()&gt;) -&gt; ()"
-                  moduleName = "VK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/anton/Documents/Swift_learning/VKSwift/VK/VK/Model/VKService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "115"
-                  endingLineNumber = "115"
-                  offsetFromSymbolStart = "1598">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "399D20FE-64C5-487C-ADF5-A865269DF676"
-            shouldBeEnabled = "No"
+            uuid = "809628F5-034D-42A6-A48A-90C7611F0F7E"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "VK/Model/VKService.swift"
+            filePath = "VK/Model/Profile.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "getData(_:completion:)"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "init(from:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "399D20FE-64C5-487C-ADF5-A865269DF676 - 1350c6197a61d6d7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "VK.VKService.(getData in _163917F367AFD0314C278BD4AFCF2174)(_: VK.VKService.VKMethod, completion: (Swift.Optional&lt;Foundation.Data&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "VK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/anton/Documents/Swift_learning/VKSwift/VK/VK/Model/VKService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "85"
-                  endingLineNumber = "85"
-                  offsetFromSymbolStart = "1631">
-               </Location>
-               <Location
-                  uuid = "399D20FE-64C5-487C-ADF5-A865269DF676 - adfffa50d08d7692"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in VK.VKService.(getData in _163917F367AFD0314C278BD4AFCF2174)(_: VK.VKService.VKMethod, completion: (Swift.Optional&lt;Foundation.Data&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "VK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/anton/Documents/Swift_learning/VKSwift/VK/VK/Model/VKService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "86"
-                  endingLineNumber = "86"
-                  offsetFromSymbolStart = "283">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
