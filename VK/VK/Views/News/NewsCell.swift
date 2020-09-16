@@ -10,6 +10,7 @@ import UIKit
 
 class NewsCell: UITableViewCell {
     
+    @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var newsText: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -138,15 +139,16 @@ class NewsCell: UITableViewCell {
         if model.author < 0 {
             authorLabel.text = "Group"
 //            model.author = model.author * -1
-//            service.getData(.groupID(id: model.author), Groups.self, shouldCache: false) {
-//                [weak self] (group: [Groups]) in
-//                self?.group = group
-//                print(group.capacity)
-//            }
+            service.getData(.groupID(id: (model.author * -1)), Groups.self, shouldCache: false)
+            
             
             
         }
         if model.author > 0 {
+            service.getPerson(userID: model.author, Users.self) {
+                [weak self] (user: [Users]) in
+                self?.user = user
+            }
             authorLabel.text = "User"
             
         }

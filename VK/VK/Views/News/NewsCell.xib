@@ -107,6 +107,7 @@
                 <outlet property="authorImage" destination="I1h-4z-dkb" id="CJe-PC-5UT"/>
                 <outlet property="authorLabel" destination="9Zs-0h-Zq4" id="N38-DJ-uuK"/>
                 <outlet property="dateLabel" destination="Mh7-G9-8UA" id="Udb-Eh-ffd"/>
+                <outlet property="likeButton" destination="7zI-P4-A8U" id="CCA-bu-sCJ"/>
                 <outlet property="newsText" destination="Idv-Du-hKI" id="Pcl-1e-C80"/>
             </connections>
             <point key="canvasLocation" x="-60.869565217391312" y="581.25"/>

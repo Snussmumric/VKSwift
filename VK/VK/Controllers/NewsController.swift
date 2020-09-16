@@ -21,11 +21,18 @@ class NewsController: UITableViewController, UICollectionViewDelegate, UICollect
         super.viewDidLoad()
         tableView.register(UINib(nibName: "NewsCell", bundle: nil), forCellReuseIdentifier: "NewsCell")
         tableView.register(UINib(nibName: "NewsWallPhotoCell", bundle: nil), forCellReuseIdentifier: "NewsWallPhotoCell")
-        service.getData(.news, News.self, shouldCache: false) {
+//        service.getData(.news(.post), News.self, shouldCache: false) {
+//            [weak self] (news: [News]) in
+//            self?.news = news
+//            self?.tableView.reloadData()
+//        }
+        
+        service.getNews(News.self) {
             [weak self] (news: [News]) in
             self?.news = news
             self?.tableView.reloadData()
         }
+        
     }
 
     // MARK: - Table view data source
@@ -42,10 +49,6 @@ class NewsController: UITableViewController, UICollectionViewDelegate, UICollect
         let item = news[indexPath.row]
         print(item.type)
         switch item.type {
-        case "post":
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
-            cell.configure(model: news[indexPath.row])
-            return cell
         case "wall_photo":
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsWallPhotoCell", for: indexPath) as! NewsWallPhotoCell
             cell.configure(model: news[indexPath.row])
@@ -54,8 +57,6 @@ class NewsController: UITableViewController, UICollectionViewDelegate, UICollect
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
             cell.configure(model: news[indexPath.row])
             return cell
-            
-
         }
 
         
