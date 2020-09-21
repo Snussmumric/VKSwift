@@ -64,19 +64,27 @@ final class VKService {
         }
     }
     
-    private func getData(_ method: VKMethod, completion: @escaping ((Data?) -> Void)) {
+    static func createURL(for method: VKMethod) -> URL? {
+        
         var components = URLComponents()
         components.scheme = "https"
         components.host = "api.vk.com"
         components.path = method.path
         let queryItems = [
-            URLQueryItem(name: "access_token", value: session.token),
+            URLQueryItem(name: "access_token", value: Session.instance.token),
             URLQueryItem(name: "v", value: "5.122")
         ]
         let methodQueryItems = method.parameters.map { URLQueryItem(name: $0, value: $1) }
         components.queryItems = queryItems + methodQueryItems
         
-        guard let url = components.url else {
+        return components.url
+        
+    }
+    
+    private func getData(_ method: VKMethod, completion: @escaping ((Data?) -> Void)) {
+
+        
+        guard let url = Self.createURL(for: method) else {
             completion(nil)
             return
         }
@@ -133,28 +141,6 @@ final class VKService {
                 
                 do {
                     let response = try JSONDecoder().decode(NewsResponse<T>.self, from: data)
-                    completion?(response.items)
-                } catch {
-                    print(error.localizedDescription)
-                    completion?([])
-                }
-            }
-        }
-    }
-    
-    func getPerson<T: Decodable>(userID: Int,
-                                 _ type: T.Type,
-                                 completion:  (([T]) -> Void)? = nil) {
-        DispatchQueue.global(qos: .utility).async {
-            
-            self.getData(.users(id: userID)) { (data) in
-                guard let data = data else {
-                    completion?([])
-                    return
-                }
-                
-                do {
-                    let response = try JSONDecoder().decode(VKResponse<T>.self, from: data)
                     completion?(response.items)
                 } catch {
                     print(error.localizedDescription)

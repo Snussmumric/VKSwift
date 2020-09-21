@@ -14,7 +14,7 @@ class MyGroupsController: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var service = VKService()
+    var service = VKGroupService()
     var groups: [Groups] = []
     var filteredGroups: [Groups] = []
     let session = Session.instance
@@ -62,7 +62,7 @@ class MyGroupsController: UITableViewController, UISearchBarDelegate {
     
     
     func loadFromNetwork() {
-        service.getData(.groups, Groups.self)
+        service.get()
     }
     
     private func bindViewToRealm () {

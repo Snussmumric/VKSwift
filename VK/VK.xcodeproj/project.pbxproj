@@ -36,6 +36,8 @@
 		3A5B5C4924F149D4008AD877 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A5B5C4824F149D4008AD877 /* GoogleService-Info.plist */; };
 		3A628AC324D815F00069394C /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 3A628AC224D815F00069394C /* SwiftyJSON */; };
 		3A628AC524D827AA0069394C /* VKResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A628AC424D827AA0069394C /* VKResponse.swift */; };
+		3A717A9525187A220073B250 /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3A717A9425187A220073B250 /* PromiseKit */; };
+		3A717A9725187B4C0073B250 /* VKGroupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A717A9625187B4C0073B250 /* VKGroupService.swift */; };
 		3A71D84224CCC0C700C37141 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A71D84124CCC0C700C37141 /* Session.swift */; };
 		3A77F19F24ACF043008F71C2 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A77F19E24ACF043008F71C2 /* AvatarView.swift */; };
 		3AA1F11324D1A2D200802C27 /* VKService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1F11224D1A2D200802C27 /* VKService.swift */; };
@@ -90,6 +92,7 @@
 		3A5B5C4624F142E0008AD877 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		3A5B5C4824F149D4008AD877 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3A628AC424D827AA0069394C /* VKResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKResponse.swift; sourceTree = "<group>"; };
+		3A717A9625187B4C0073B250 /* VKGroupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKGroupService.swift; sourceTree = "<group>"; };
 		3A71D84124CCC0C700C37141 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		3A77F19E24ACF043008F71C2 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		3AA1F11224D1A2D200802C27 /* VKService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKService.swift; sourceTree = "<group>"; };
@@ -122,6 +125,7 @@
 				3AEB870424D18C3900F2AF30 /* WebKit.framework in Frameworks */,
 				3A628AC324D815F00069394C /* SwiftyJSON in Frameworks */,
 				3ACCA2C024DDDC0C00DC40FD /* RealmSwift in Frameworks */,
+				3A717A9525187A220073B250 /* PromiseKit in Frameworks */,
 				23DA1C396E51BA82337A2A87 /* Pods_VK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,6 +141,7 @@
 				3A628AC424D827AA0069394C /* VKResponse.swift */,
 				3AFB43F3250A1E3C00932F29 /* SearchResponse.swift */,
 				3A5B5C4424F1369D008AD877 /* FirebaseDB.swift */,
+				3A717A9625187B4C0073B250 /* VKGroupService.swift */,
 			);
 			name = Services;
 			path = CustomClasses/Services;
@@ -306,6 +311,7 @@
 				3A628AC224D815F00069394C /* SwiftyJSON */,
 				3ACCA2BF24DDDC0C00DC40FD /* RealmSwift */,
 				3ACCA2C224EA6A0F00DC40FD /* Alamofire */,
+				3A717A9425187A220073B250 /* PromiseKit */,
 			);
 			productName = VK;
 			productReference = 3A5593C12494B8740024A35A /* VK.app */;
@@ -340,6 +346,7 @@
 				3A628AC124D815F00069394C /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				3ACCA2BE24DDDC0C00DC40FD /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				3ACCA2C124EA6A0F00DC40FD /* XCRemoteSwiftPackageReference "Alamofire" */,
+				3A717A9325187A220073B250 /* XCRemoteSwiftPackageReference "PromiseKit" */,
 			);
 			productRefGroup = 3A5593C22494B8740024A35A /* Products */;
 			projectDirPath = "";
@@ -450,6 +457,7 @@
 				3A628AC524D827AA0069394C /* VKResponse.swift in Sources */,
 				3A57018124B337AA0088C958 /* NewsPhotoCollectionCell.swift in Sources */,
 				3AE719A824BE5ECA005388C8 /* Animator.swift in Sources */,
+				3A717A9725187B4C0073B250 /* VKGroupService.swift in Sources */,
 				3A21E088249F5B9100C604AD /* Users.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -652,6 +660,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		3A717A9325187A220073B250 /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mxcl/PromiseKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.13.3;
+			};
+		};
 		3AA2A8AA24D4C953002CB130 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -683,6 +699,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3A628AC124D815F00069394C /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
+		};
+		3A717A9425187A220073B250 /* PromiseKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A717A9325187A220073B250 /* XCRemoteSwiftPackageReference "PromiseKit" */;
+			productName = PromiseKit;
 		};
 		3AA2A8AB24D4C953002CB130 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

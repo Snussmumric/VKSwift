@@ -15,6 +15,7 @@ class NewsController: UITableViewController, UICollectionViewDelegate, UICollect
     lazy var service = VKService()
     
     var news: [News] = []
+    var profile: [Profile] = []
 //    let news = NewsModel.fake
 
     override func viewDidLoad() {
