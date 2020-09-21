@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import RealmSwift
 
 class News: Decodable {
     
-    var type: String = ""
+    var type: NewsItemType
     var author: Int = 0
     var date: Double = 0
     var text: String? = ""
@@ -19,7 +18,7 @@ class News: Decodable {
     var likesCount: Int = 0
     var repostsCount: Int = 0
     var viewsCount: Int = 0
-    
+    var profile: Profile?
     
     enum CodingKeys: String, CodingKey {
         case type
@@ -38,7 +37,8 @@ class News: Decodable {
     required init(from decoder: Decoder) throws {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.type = try container.decode(String.self, forKey: .type)
+        let typeString = try container.decode(String.self, forKey: .type)
+        self.type = NewsItemType(rawValue: typeString) ?? .post
         self.author = try container.decode(Int.self, forKey: .author)
         self.date = try container.decode(Double.self, forKey: .date)
         self.text = try container.decodeIfPresent(String.self, forKey: .text) ?? ""
@@ -60,30 +60,7 @@ class News: Decodable {
     }
 }
 
-
-
 enum NewsItemType: String {
     case post
-    case photo
+    case photo = "wall_photo"
 }
-
-//struct NewsModel {
-//
-//    var author: String
-//    var postDate: String
-//    var text: String
-//    var images: [UIImage]
-//
-//    static let fake: [NewsModel] = (1...6).map { _ in
-//        NewsModel(
-//            author: "Bob",
-//            postDate: "01.01.1901",
-//            text: "TestPost",
-//            images: (1...Int.random(in: 6...10))
-//                .map({$0 % 6})
-//                .shuffled()
-//                .compactMap({String($0)})
-//                .compactMap({UIImage(named: $0)})
-//        )
-//    }
-//}

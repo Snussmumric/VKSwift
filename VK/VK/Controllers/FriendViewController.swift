@@ -50,8 +50,6 @@ class FriendViewController: UIViewController, UICollectionViewDelegate, UICollec
     lazy var realm = try! Realm()
     var notificationToken: NotificationToken?
     var items: Results<Photos>!
-
-    
     
     @IBOutlet weak var friendCollectionView: UICollectionView!
     
@@ -65,11 +63,6 @@ class FriendViewController: UIViewController, UICollectionViewDelegate, UICollec
         bindViewToRealm()
 
         loadFromNetwork()
-        
-
-
-        
-
         
         personalInfoDataView.backgroundColor = UIColor(rgb: 0x92D5F9)
         
@@ -88,13 +81,7 @@ class FriendViewController: UIViewController, UICollectionViewDelegate, UICollec
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
         personMainImage.addGestureRecognizer(tap)
         
-
-        
-        
-        
-        
     }
-
     
     func loadFromNetwork() {
         service.getData(.photos(id: person.id), Photos.self)
@@ -120,6 +107,7 @@ class FriendViewController: UIViewController, UICollectionViewDelegate, UICollec
     @objc func tapped(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "segue", sender: UITapGestureRecognizer.self)
     }
+    
     @objc func tappedCell(_ sender: UITapGestureRecognizer) {
         print ("You tapped cell")
         performSegue(withIdentifier: "slider", sender: UITapGestureRecognizer.self)
@@ -131,7 +119,6 @@ class FriendViewController: UIViewController, UICollectionViewDelegate, UICollec
             viewController.photo = personMainImage.image
             viewController.transitioningDelegate = transitionController
             transitionController.startView = personMainImage
-            
         }
         
         if
@@ -167,5 +154,3 @@ extension FriendViewController: UICollectionViewDataSource {
     }
     
 }
-
-
