@@ -145,10 +145,6 @@ class NewsCell: UITableViewCell {
             
         }
         if model.author > 0 {
-            service.getPerson(userID: model.author, Users.self) {
-                [weak self] (user: [Users]) in
-                self?.user = user
-            }
             authorLabel.text = "User"
             
         }
