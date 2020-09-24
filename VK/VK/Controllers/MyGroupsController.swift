@@ -14,6 +14,7 @@ class MyGroupsController: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
+    lazy var photoService = PhotoService.init(container: self.tableView)
     var service = VKGroupService()
     var groups: [Groups] = []
     var filteredGroups: [Groups] = []
@@ -88,6 +89,7 @@ class MyGroupsController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MyGroupsCell
         cell.configure(group: filteredGroups[indexPath.row])
+        cell.myGroupImage.image = photoService.photo(at: indexPath, url: filteredGroups[indexPath.row].imageUrl)
         return cell
     }
     

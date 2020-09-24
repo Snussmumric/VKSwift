@@ -38,6 +38,7 @@
 		3A628AC524D827AA0069394C /* VKResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A628AC424D827AA0069394C /* VKResponse.swift */; };
 		3A717A9525187A220073B250 /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3A717A9425187A220073B250 /* PromiseKit */; };
 		3A717A9725187B4C0073B250 /* VKGroupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A717A9625187B4C0073B250 /* VKGroupService.swift */; };
+		3A717A99251C70B10073B250 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A717A98251C70B10073B250 /* PhotoService.swift */; };
 		3A71D84224CCC0C700C37141 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A71D84124CCC0C700C37141 /* Session.swift */; };
 		3A77F19F24ACF043008F71C2 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A77F19E24ACF043008F71C2 /* AvatarView.swift */; };
 		3AA1F11324D1A2D200802C27 /* VKService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1F11224D1A2D200802C27 /* VKService.swift */; };
@@ -93,6 +94,7 @@
 		3A5B5C4824F149D4008AD877 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3A628AC424D827AA0069394C /* VKResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKResponse.swift; sourceTree = "<group>"; };
 		3A717A9625187B4C0073B250 /* VKGroupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKGroupService.swift; sourceTree = "<group>"; };
+		3A717A98251C70B10073B250 /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
 		3A71D84124CCC0C700C37141 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		3A77F19E24ACF043008F71C2 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		3AA1F11224D1A2D200802C27 /* VKService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKService.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				3AFB43F3250A1E3C00932F29 /* SearchResponse.swift */,
 				3A5B5C4424F1369D008AD877 /* FirebaseDB.swift */,
 				3A717A9625187B4C0073B250 /* VKGroupService.swift */,
+				3A717A98251C70B10073B250 /* PhotoService.swift */,
 			);
 			name = Services;
 			path = CustomClasses/Services;
@@ -420,6 +423,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A717A99251C70B10073B250 /* PhotoService.swift in Sources */,
 				3A408F28249DEBE800964D45 /* AllGroupsController.swift in Sources */,
 				3A5B5C4724F142E0008AD877 /* DateExtensions.swift in Sources */,
 				3A5593C52494B8740024A35A /* AppDelegate.swift in Sources */,
