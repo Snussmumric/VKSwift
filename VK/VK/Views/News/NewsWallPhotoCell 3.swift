@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class NewsWallPhotoCell: UITableViewCell {
     
@@ -39,22 +38,33 @@ class NewsWallPhotoCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(model: NewsItems) {
+    func configure(model: News) {
         
-//        authorImage.image = UIImage(systemName: "paperplane.fill")
+        authorImage.image = UIImage(systemName: "paperplane.fill")
         //        mainImageView.image = model.images.first
         let date = Date(timeIntervalSince1970: model.date)
         dateLabel.text = NewsCell.dateFormatter.string(from: date)
         
-        authorLabel.text = model.author
         
-
-        if let imageUrl = model.authorImageURL, let url = URL(string: imageUrl) {
-            let resource = ImageResource(downloadURL: url)
-            authorImage?.kf.setImage(with: resource)
+        if model.author < 0 {
+            authorLabel.text = "Group"
+//            model.author = model.author * -1
+//            service.getData(.groupID(id: model.author), Groups.self, shouldCache: false) {
+//                [weak self] (group: [Groups]) in
+//                self?.group = group
+//                print(group.capacity)
+//            }
+            
+            
         }
-        postPhoto.image = UIImage(systemName: "heart")
+        if model.author > 0 {
+            authorLabel.text = "User"
+            
+        }
         
+        //        dateLabel.text = String(NSDate(timeIntervalSince1970: TimeInterval(model.date)))
+//        newsText.text = model.text
+        postPhoto.image = UIImage(named: "2")
         //
         //        collectionView.register(UINib(nibName: "NewsPhotoCollectionCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         //

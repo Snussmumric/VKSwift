@@ -13,9 +13,10 @@ class NewsController: UITableViewController, UICollectionViewDelegate, UICollect
     
     
     lazy var service = VKService()
+    lazy var newsService = VKNewsService()
     
-    var news: [News] = []
-    var profile: [Profile] = []
+    var news: [NewsItems] = []
+//    var profile: [Profile] = []
 //    let news = NewsModel.fake
 
     override func viewDidLoad() {
@@ -28,12 +29,22 @@ class NewsController: UITableViewController, UICollectionViewDelegate, UICollect
 //            self?.tableView.reloadData()
 //        }
         
-        service.getNews(News.self) {
-            [weak self] (news: [News]) in
-            self?.news = news
-            self?.tableView.reloadData()
+//        service.getNews(News.self) {
+//            [weak self] (news: [News]) in
+//            self?.news = news
+//            self?.tableView.reloadData()
+//        }
+        
+        newsService.get { (items) in
+            
         }
         
+        newsService.get { [weak self] (news: [NewsItems]) in
+            self?.news = news
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
     }
 
     // MARK: - Table view data source

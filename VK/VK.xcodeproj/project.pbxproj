@@ -40,6 +40,7 @@
 		3A77F19F24ACF043008F71C2 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A77F19E24ACF043008F71C2 /* AvatarView.swift */; };
 		3AA1F11324D1A2D200802C27 /* VKService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1F11224D1A2D200802C27 /* VKService.swift */; };
 		3AA2A8AC24D4C953002CB130 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA2A8AB24D4C953002CB130 /* Kingfisher */; };
+		3AA88C322523665C00E9035A /* VKNewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA88C312523665C00E9035A /* VKNewsService.swift */; };
 		3ABC9DBF24DB39F600687D22 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABC9DBE24DB39F600687D22 /* Photos.swift */; };
 		3ABC9DC224DC23CB00687D22 /* SliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABC9DC124DC23CB00687D22 /* SliderViewController.swift */; };
 		3ACCA2C024DDDC0C00DC40FD /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3ACCA2BF24DDDC0C00DC40FD /* RealmSwift */; };
@@ -92,6 +93,7 @@
 		3A71D84124CCC0C700C37141 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		3A77F19E24ACF043008F71C2 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		3AA1F11224D1A2D200802C27 /* VKService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKService.swift; sourceTree = "<group>"; };
+		3AA88C312523665C00E9035A /* VKNewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKNewsService.swift; sourceTree = "<group>"; };
 		3ABC9DBE24DB39F600687D22 /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		3ABC9DC124DC23CB00687D22 /* SliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewController.swift; sourceTree = "<group>"; };
 		3AE2FC5D24A87B1D009BFDF2 /* FriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				3AFB43F3250A1E3C00932F29 /* SearchResponse.swift */,
 				3A717A9625187B4C0073B250 /* VKGroupService.swift */,
 				3A717A98251C70B10073B250 /* PhotoService.swift */,
+				3AA88C312523665C00E9035A /* VKNewsService.swift */,
 			);
 			name = Services;
 			path = CustomClasses/Services;
@@ -303,7 +306,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Антон Васильченко";
 				TargetAttributes = {
 					3A5593C02494B8740024A35A = {
@@ -377,6 +380,7 @@
 				3A408F2A249DEC1500964D45 /* MyGroupsController.swift in Sources */,
 				3AE2FC5E24A87B1D009BFDF2 /* FriendViewController.swift in Sources */,
 				3A57017E24B32DCA0088C958 /* NewsModel.swift in Sources */,
+				3AA88C322523665C00E9035A /* VKNewsService.swift in Sources */,
 				3A57018424B6EADE0088C958 /* LoadingView.swift in Sources */,
 				3AEFCD4424ADB265000EDA36 /* NewsController.swift in Sources */,
 				3A57018624B6EE420088C958 /* LoadingController.swift in Sources */,
@@ -438,6 +442,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -462,7 +467,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -498,6 +503,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -516,7 +522,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

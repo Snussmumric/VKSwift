@@ -7,14 +7,10 @@
 //
 
 import UIKit
-import Kingfisher
 
 class NewsCell: UITableViewCell {
     
     @IBOutlet weak var likeButton: UIButton!
-    @IBOutlet weak var commentButton: UIButton!
-    @IBOutlet weak var viewButton: UIButton!
-    @IBOutlet weak var repostButton: UIButton!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var newsText: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -132,7 +128,7 @@ class NewsCell: UITableViewCell {
         return formatter
     }()
     
-    func configure(model: NewsItems) {
+    func configure(model: News) {
         
         authorImage.image = UIImage(systemName: "paperplane.fill")
         //        mainImageView.image = model.images.first
@@ -140,20 +136,26 @@ class NewsCell: UITableViewCell {
         dateLabel.text = NewsCell.dateFormatter.string(from: date)
         
         
-        authorLabel.text = model.author
-        newsText.text = model.text
-        likeButton.setTitle(String(model.likeCount!), for: .normal)
-        commentButton.setTitle(String(model.commentCount!), for: .normal)
-        viewButton.setTitle(String(model.viewCount!), for: .normal)
-        repostButton.setTitle(String(model.repostCount!), for: .normal)
-
-        
-        
-        if let imageUrl = model.authorImageURL, let url = URL(string: imageUrl) {
-            let resource = ImageResource(downloadURL: url)
-            authorImage?.kf.setImage(with: resource)
+        if model.author < 0 {
+            authorLabel.text = "Group"
+//            model.author = model.author * -1
+            service.getData(.groupID(id: (model.author * -1)), Groups.self, shouldCache: false)
+            
+            
+            
         }
+        if model.author > 0 {
+            authorLabel.text = "User"
+            
+        }
+        
+        //        dateLabel.text = String(NSDate(timeIntervalSince1970: TimeInterval(model.date)))
+        newsText.text = model.text
+        //
+        //        collectionView.register(UINib(nibName: "NewsPhotoCollectionCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
+        //
     }
+    
     
     func setCollectionDelegate (_ delegate: UICollectionViewDataSource & UICollectionViewDelegate, for row: Int) {
         collectionView.dataSource = delegate
@@ -165,4 +167,3 @@ class NewsCell: UITableViewCell {
     
     
 }
-
