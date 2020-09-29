@@ -17,6 +17,7 @@ class MyFriendsController: UITableViewController, UISearchBarDelegate {
     lazy var realm = try! Realm()
     var notificationToken: NotificationToken?
     var items: Results<Users>!
+    lazy var photoService = PhotoService(container: self.tableView)
     
     @IBOutlet weak var friendSearcher: UISearchBar!
     
@@ -97,6 +98,7 @@ class MyFriendsController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MyFriendsCell
         cell.configure(friend: items(indexPath.section)[indexPath.row])
+        cell.containerView.imageView.image = photoService.photo(at: indexPath, url: items(indexPath.section)[indexPath.row].imageUrl50)
         return cell
     }
     

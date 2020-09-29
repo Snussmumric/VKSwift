@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Kingfisher
+//import Kingfisher
 
 final class MyFriendsCell: UITableViewCell {
     
@@ -24,12 +24,12 @@ final class MyFriendsCell: UITableViewCell {
     func configure(friend: Users) {
         friendName?.text = friend.name
         
-        if let imageUrl = friend.imageUrl50, let url = URL(string: imageUrl) {
-            let resource = ImageResource(downloadURL: url)
-            containerView?.imageView.kf.setImage(with: resource) { [weak self] _ in
-                self?.setNeedsLayout()
-            }
-        }
+//        if let imageUrl = friend.imageUrl50, let url = URL(string: imageUrl) {
+//            let resource = ImageResource(downloadURL: url)
+//            containerView?.imageView.kf.setImage(with: resource) { [weak self] _ in
+//                self?.setNeedsLayout()
+//            }
+//        }
     }
 
 }

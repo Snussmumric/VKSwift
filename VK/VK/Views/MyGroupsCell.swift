@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Kingfisher
+//import Kingfisher
 
 class MyGroupsCell: UITableViewCell {
     
@@ -22,12 +22,12 @@ class MyGroupsCell: UITableViewCell {
        func configure(group: Groups) {
            myGroupName?.text = group.name
            
-           if let imageUrl = group.imageUrl, let url = URL(string: imageUrl) {
-               let resource = ImageResource(downloadURL: url)
-               myGroupImage?.kf.setImage(with: resource) { [weak self] _ in
-                   self?.setNeedsLayout()
-               }
-           }
+//           if let imageUrl = group.imageUrl, let url = URL(string: imageUrl) {
+//               let resource = ImageResource(downloadURL: url)
+//               myGroupImage?.kf.setImage(with: resource) { [weak self] _ in
+//                   self?.setNeedsLayout()
+//               }
+//           }
        }
 
     

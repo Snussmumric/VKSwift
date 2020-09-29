@@ -8,22 +8,20 @@
 
 import UIKit
 import RealmSwift
-import FirebaseDatabase
 
 class MyGroupsController: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
+    lazy var photoService = PhotoService.init(container: self.tableView)
     var service = VKGroupService()
+//    var service = VKService()
     var groups: [Groups] = []
     var filteredGroups: [Groups] = []
     let session = Session.instance
     
     var notificationToken: NotificationToken?
     var items: Results<Groups>!
-    lazy var database = Database.database()
-    var firebaseDB: [FirebaseDB] = []
-    lazy var ref: DatabaseReference = self.database.reference(withPath: "users")
     
     
     
@@ -39,16 +37,12 @@ class MyGroupsController: UITableViewController, UISearchBarDelegate {
         
         if !groups.contains(group){
             filteredGroups.append(group)
-            let groupDB = FirebaseDB(groupID: group.id)
-            ref
-                .child(String(session.userId))
-                .child("Groups")
-                .child(String(groupDB.toDatabase()))
-                .setValue([group.name, group.imageUrl])
             tableView.reloadData()
         }
         
     }
+    
+    
     
     
     override func viewDidLoad() {
@@ -63,6 +57,7 @@ class MyGroupsController: UITableViewController, UISearchBarDelegate {
     
     func loadFromNetwork() {
         service.get()
+//        service.getData(.groups, Groups.self)
     }
     
     private func bindViewToRealm () {
@@ -88,21 +83,15 @@ class MyGroupsController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MyGroupsCell
         cell.configure(group: filteredGroups[indexPath.row])
+        cell.myGroupImage.image = photoService.photo(at: indexPath, url: filteredGroups[indexPath.row].imageUrl)
         return cell
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let group = filteredGroups[indexPath.row]
+//            let group = filteredGroups[indexPath.row]
             filteredGroups.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            let groupDB = FirebaseDB(groupID: group.id)
-
-            ref
-            .child(String(session.userId))
-            .child("Groups")
-            .child(String(groupDB.toDatabase()))
-            .removeValue()
         }
     }
     
