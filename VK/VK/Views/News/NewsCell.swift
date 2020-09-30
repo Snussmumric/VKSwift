@@ -126,18 +126,13 @@ class NewsCell: UITableViewCell {
     //            }
     //        }
     
-    static let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM HH:mm"
-        return formatter
-    }()
     
     func configure(model: NewsItems) {
         
         authorImage.image = UIImage(systemName: "paperplane.fill")
         //        mainImageView.image = model.images.first
-        let date = Date(timeIntervalSince1970: model.date)
-        dateLabel.text = NewsCell.dateFormatter.string(from: date)
+//        let date = Date(timeIntervalSince1970: model.date)
+//        dateLabel.text = NewsCell.dateFormatter.string(from: date)
         
         
         authorLabel.text = model.author

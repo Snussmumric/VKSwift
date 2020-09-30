@@ -20,6 +20,7 @@ struct NewsItems {
     var viewCount: Int? = 0
     var commentCount: Int? = 0
     var repostCount: Int? = 0
+//    var attachmentURL: String?
 
     init (json: JSON) {
         
@@ -32,6 +33,7 @@ struct NewsItems {
         self.viewCount = json["views"]["count"].intValue
         self.commentCount = json["comments"]["count"].intValue
         self.repostCount = json["reposts"]["count"].intValue
+//        self.attachmentURL = json["attachments"]["photo"]["sizes"].arrayValue.map{$0["url"].stringValue}
 
     }
 }
