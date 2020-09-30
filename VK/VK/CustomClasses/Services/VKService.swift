@@ -72,7 +72,7 @@ final class VKService {
         components.path = method.path
         let queryItems = [
             URLQueryItem(name: "access_token", value: Session.instance.token),
-            URLQueryItem(name: "v", value: "5.122")
+            URLQueryItem(name: "v", value: "5.21")
         ]
         let methodQueryItems = method.parameters.map { URLQueryItem(name: $0, value: $1) }
         components.queryItems = queryItems + methodQueryItems

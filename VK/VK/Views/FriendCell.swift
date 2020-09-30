@@ -7,24 +7,7 @@
 //
 
 import UIKit
-import Kingfisher
 
 class FriendCell: UICollectionViewCell {
     @IBOutlet weak var friendBigPhotos: UIImageView!
-    
-    
-    
-    
-    func configure(photo: Photos) {
-        
-        if let imageUrl = photo.imageURL, let url = URL(string: imageUrl) {
-            let resource = ImageResource(downloadURL: url)
-            friendBigPhotos?.kf.setImage(with: resource, completionHandler:  { [weak self] _ in
-                self?.setNeedsLayout()
-            })
-        }
-    }
-    
-    
-        
 }

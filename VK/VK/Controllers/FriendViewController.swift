@@ -47,6 +47,7 @@ class FriendViewController: UIViewController, UICollectionViewDelegate, UICollec
     var photos: [Photos] = []
     var person : Users!
     lazy var service = VKService()
+    lazy var photoService = PhotoService(container: friendCollectionView)
     lazy var realm = try! Realm()
     var notificationToken: NotificationToken?
     var items: Results<Photos>!
@@ -149,7 +150,8 @@ extension FriendViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendCell", for: indexPath) as! FriendCell
-        cell.configure(photo: photos[indexPath.row])
+        cell.friendBigPhotos.image = photoService.photo(at: indexPath, url: photos[indexPath.row].imageURL)
+
         return cell
     }
     
