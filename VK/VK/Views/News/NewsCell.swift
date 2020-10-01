@@ -6,10 +6,17 @@
 //  Copyright © 2020 Антон Васильченко. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import Kingfisher
 
-class NewsCell: UITableViewCell {
+protocol NewsPostCellDelegate: class {
+    func didTapShowMore(cell: NewsCell)
+}
+
+final class NewsCell: UITableViewCell {
+    
+    weak var delegate: NewsPostCellDelegate?
     
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var commentButton: UIButton!
@@ -23,41 +30,65 @@ class NewsCell: UITableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var imageContainerView: UIView!
     lazy var nextImageView = UIImageView()
+    @IBOutlet weak var showMoreButton: UIButton!
     
     lazy var service = VKService()
     var user: [Users] = []
     var group: [Groups] = []
     
-    
-    let images = (1...Int.random(in: 6...10))
-        .map({$0 % 6})
-        .shuffled()
-        .compactMap({String($0)})
-        .compactMap({UIImage(named: $0)})
-    
-    var currentIndex = 0
+    var isExpanded = false {
+        didSet {
+            updatePostLabel()
+            updateShowMoreButton()
+        }
+    }
+
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        selectionStyle = .none
+        updatePostLabel()
+        showMoreButton.addTarget(self, action: #selector(showMoreTapped), for: .touchUpInside)
+        updateShowMoreButton()
+    }
+    
+    @objc private func showMoreTapped() {
+        delegate?.didTapShowMore(cell: self )
+    }
+    
+    private func updatePostLabel() {
+        newsText.numberOfLines = isExpanded ? 0 : 10
+    }
+    
+    private func updateShowMoreButton() {
+        let title = isExpanded ? "Show less..." : "Show more..."
+        showMoreButton.setTitle(title, for: .normal)
+    }
+    
+    private func getLabelSize(text: String, font: UIFont) -> CGSize {
+        let maxWidth = frame.width
+        let textBlock = CGSize(width: maxWidth, height: CGFloat.greatestFiniteMagnitude)
+        let rect = text.boundingRect(with: textBlock, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
+        
+        let width = Double(rect.size.width)
+        let height = Double(rect.size.height)
+         
+        let size = CGSize(width: ceil(width), height: ceil(height))
+        return size
     }
     
     
     func configure(item: NewsItems) {
         
-//        authorImage.image = UIImage(systemName: "paperplane.fill")
-        //        mainImageView.image = model.images.first
-//        let date = Date(timeIntervalSince1970: model.date)
-//        dateLabel.text = NewsCell.dateFormatter.string(from: date)
-        
-        
         authorLabel.text = item.profile?.name
-        newsText.text = item.text
         likeButton.setTitle(String(item.likeCount), for: .normal)
         commentButton.setTitle(String(item.commentCount), for: .normal)
         viewButton.setTitle(String(item.viewCount), for: .normal)
         repostButton.setTitle(String(item.repostCount), for: .normal)
 
-        
+        let labelSize = getLabelSize(text: item.text ?? "", font: newsText.font)
+        showMoreButton.isHidden = labelSize.height < 200
+        newsText.text = item.text
         
         if let imageUrl = item.profile?.imageURL, let url = URL(string: imageUrl) {
             let resource = ImageResource(downloadURL: url)

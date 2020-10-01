@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vjS-0t-LO3">
-                        <rect key="frame" x="16" y="16" width="348" height="141.5"/>
+                        <rect key="frame" x="16" y="16" width="348" height="111.5"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I1h-4z-dkb">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -46,12 +46,6 @@
                             </stackView>
                         </subviews>
                     </stackView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Idv-Du-hKI">
-                        <rect key="frame" x="36" y="173.5" width="308" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="VAt-nk-mVm">
                         <rect key="frame" x="16" y="210" width="348" height="24"/>
                         <subviews>
@@ -89,18 +83,32 @@
                             <constraint firstAttribute="height" constant="24" id="eB0-Jx-9ar"/>
                         </constraints>
                     </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hy7-gX-EJ7">
+                        <rect key="frame" x="20" y="143.5" width="340" height="50.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Idv-Du-hKI">
+                                <rect key="frame" x="0.0" y="0.0" width="340" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QUU-rd-qSI">
+                                <rect key="frame" x="0.0" y="20.5" width="340" height="30"/>
+                            </button>
+                        </subviews>
+                    </stackView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="VAt-nk-mVm" secondAttribute="bottom" constant="16" id="3ci-fj-Jcz"/>
-                    <constraint firstItem="Idv-Du-hKI" firstAttribute="top" secondItem="vjS-0t-LO3" secondAttribute="bottom" constant="16" id="5WI-xX-PLF"/>
+                    <constraint firstItem="hy7-gX-EJ7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="6aR-b3-smf"/>
+                    <constraint firstItem="VAt-nk-mVm" firstAttribute="top" secondItem="hy7-gX-EJ7" secondAttribute="bottom" constant="16" id="99G-wL-bFw"/>
                     <constraint firstItem="VAt-nk-mVm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="CaX-9X-Nx6"/>
                     <constraint firstAttribute="trailing" secondItem="vjS-0t-LO3" secondAttribute="trailing" constant="16" id="CoA-G3-pXA"/>
                     <constraint firstItem="vjS-0t-LO3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="L0T-s0-m6g"/>
-                    <constraint firstItem="Idv-Du-hKI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="OE0-wy-XOC"/>
-                    <constraint firstItem="VAt-nk-mVm" firstAttribute="top" secondItem="Idv-Du-hKI" secondAttribute="bottom" constant="16" id="QmK-Pt-BYz"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="hy7-gX-EJ7" secondAttribute="trailing" id="Mxr-Dc-paP"/>
                     <constraint firstAttribute="trailing" secondItem="VAt-nk-mVm" secondAttribute="trailing" constant="16" id="bY8-Rq-t9u"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Idv-Du-hKI" secondAttribute="trailing" constant="16" id="hQl-mn-tLk"/>
                     <constraint firstItem="vjS-0t-LO3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="spJ-By-XWh"/>
+                    <constraint firstItem="hy7-gX-EJ7" firstAttribute="top" secondItem="vjS-0t-LO3" secondAttribute="bottom" constant="16" id="uku-vW-YJq"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -112,6 +120,7 @@
                 <outlet property="likeButton" destination="7zI-P4-A8U" id="CCA-bu-sCJ"/>
                 <outlet property="newsText" destination="Idv-Du-hKI" id="Pcl-1e-C80"/>
                 <outlet property="repostButton" destination="lDo-89-8Tw" id="Z9p-ey-0kB"/>
+                <outlet property="showMoreButton" destination="QUU-rd-qSI" id="Ec0-bK-BhB"/>
                 <outlet property="viewButton" destination="K63-hg-Oko" id="NZa-cE-zrm"/>
             </connections>
             <point key="canvasLocation" x="-60.869565217391312" y="581.25"/>

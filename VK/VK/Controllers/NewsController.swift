@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-final class NewsController: UITableViewController, UITableViewDataSourcePrefetching {
+final class NewsController: UITableViewController, UITableViewDataSourcePrefetching, NewsPostCellDelegate {
     lazy var newsService = VKNewsService()
     var news: [NewsItems] = []
     
@@ -108,7 +108,9 @@ final class NewsController: UITableViewController, UITableViewDataSourcePrefetch
         case .post:
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
             cell.configure(item: item)
+            cell.delegate = self
             cell.dateLabel.text = getCellDateText(forIndexPath: indexPath, andTimestamp: item.date)
+            
             return cell
         case .photo:
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsWallPhotoCell", for: indexPath) as! NewsWallPhotoCell
@@ -153,4 +155,13 @@ final class NewsController: UITableViewController, UITableViewDataSourcePrefetch
             strongSelf.isLoading = false
         }
     }
+    
+    // MARK: -  NewsPostCellDelegate
+    
+    func didTapShowMore(cell: NewsCell) {
+        tableView.beginUpdates()
+        cell.isExpanded.toggle()
+        tableView.endUpdates()
+    }
+
 }
