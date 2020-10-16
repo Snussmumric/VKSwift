@@ -9,5 +9,5 @@
 import UIKit
 
 class FriendCell: UICollectionViewCell {
-    @IBOutlet weak var friendBigPhotos: UIImageView!
+    @IBOutlet weak var friendBigPhotos: AsyncImageView!
 }
