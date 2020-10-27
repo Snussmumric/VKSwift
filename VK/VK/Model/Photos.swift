@@ -14,6 +14,8 @@ final class Photos: Object, Decodable {
     @objc dynamic var imageURL: String? = ""
     @objc dynamic var id: Int = 0
     @objc dynamic var ownerID: Int = 0
+    @objc dynamic var albumID: Int = 0
+
 
     
     
@@ -25,6 +27,7 @@ final class Photos: Object, Decodable {
         case id
         case photo = "photo_604"
         case ownerID = "owner_id"
+        case albumID = "album_id"
     }
     
     convenience init(from decoder: Decoder) throws {
@@ -33,6 +36,8 @@ final class Photos: Object, Decodable {
         self.imageURL = try container.decode(String.self, forKey: .photo)
         self.id = try container.decode(Int.self, forKey: .id)
         self.ownerID = try container.decode(Int.self, forKey: .ownerID)
+        self.albumID = try container.decode(Int.self, forKey: .albumID)
+
 
         
         

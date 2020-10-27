@@ -19,9 +19,9 @@ class AllGroupsCell: UITableViewCell {
         
         if let imageUrl = group.imageUrl, let url = URL(string: imageUrl) {
             let resource = ImageResource(downloadURL: url)
-            allGroupsImage?.kf.setImage(with: resource) { [weak self] _ in
+            allGroupsImage?.kf.setImage(with: resource, completionHandler:  { [weak self] _ in
                 self?.setNeedsLayout()
-            }
+            })
         }
     }
     

@@ -60,7 +60,7 @@ class News: Decodable {
     }
 }
 
-enum NewsItemType: String {
-    case post
-    case photo = "wall_photo"
-}
+//enum NewsItemType: String {
+//    case post
+//    case photo = "wall_photo"
+//}

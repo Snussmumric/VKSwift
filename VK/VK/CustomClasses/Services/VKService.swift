@@ -20,7 +20,7 @@ final class VKService {
         case groups
         case searchGroups(text: String)
         case users(id: Int)
-        case news
+        case news(_ type: NewsItemType)
         case groupID(id: Int)
         
         var path: String {
@@ -55,8 +55,8 @@ final class VKService {
                 return ["extended": "1"]
             case let .searchGroups(text):
                 return ["q": text]
-            case .news:
-                return ["filter": "post,wall_photo"]
+            case let .news(type):
+                return ["filter": type.rawValue]
             //                return ["filter": "post,photo,photo_tag,wall_photo"]
             case let .groupID(id):
                 return ["group_id": String(id)]
@@ -72,7 +72,7 @@ final class VKService {
         components.path = method.path
         let queryItems = [
             URLQueryItem(name: "access_token", value: Session.instance.token),
-            URLQueryItem(name: "v", value: "5.122")
+            URLQueryItem(name: "v", value: "5.21")
         ]
         let methodQueryItems = method.parameters.map { URLQueryItem(name: $0, value: $1) }
         components.queryItems = queryItems + methodQueryItems
@@ -133,7 +133,7 @@ final class VKService {
                           completion:  (([T]) -> Void)? = nil) {
         DispatchQueue.global(qos: .utility).async {
             
-            self.getData(.news) { (data) in
+            self.getData(.news(.post)) { (data) in
                 guard let data = data else {
                     completion?([])
                     return

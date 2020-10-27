@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vjS-0t-LO3">
-                        <rect key="frame" x="16" y="16" width="348" height="141.5"/>
+                        <rect key="frame" x="16" y="16" width="348" height="111.5"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I1h-4z-dkb">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -45,81 +46,96 @@
                             </stackView>
                         </subviews>
                     </stackView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Idv-Du-hKI">
-                        <rect key="frame" x="36" y="173.5" width="308" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="VAt-nk-mVm">
                         <rect key="frame" x="16" y="210" width="348" height="24"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zI-P4-A8U">
                                 <rect key="frame" x="0.0" y="0.0" width="87" height="22"/>
                                 <state key="normal" title="0" image="heart" catalog="system">
-                                    <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" systemColor="linkColor"/>
                                 </state>
                                 <state key="selected" image="heart.fill" catalog="system"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vzl-yX-OTi">
                                 <rect key="frame" x="87" y="0.0" width="87" height="22"/>
                                 <state key="normal" title="0" image="text.bubble" catalog="system">
-                                    <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" systemColor="linkColor"/>
                                 </state>
                                 <state key="selected" image="text.bubble.fill" catalog="system"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lDo-89-8Tw">
                                 <rect key="frame" x="174" y="0.0" width="87" height="22"/>
-                                <state key="normal" title="0" image="hand.thumbsup" catalog="system">
-                                    <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="0" image="arrowshape.turn.up.left.2.fill" catalog="system">
+                                    <color key="titleColor" systemColor="linkColor"/>
                                 </state>
                                 <state key="selected" image="hand.thumbsup.fill" catalog="system"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K63-hg-Oko">
                                 <rect key="frame" x="261" y="0.0" width="87" height="22"/>
                                 <state key="normal" title="0" image="eye" catalog="system">
-                                    <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" systemColor="linkColor"/>
                                 </state>
                                 <state key="selected" image="hand.thumbsup.fill" catalog="system"/>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="PAV-l1-OTB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="eB0-Jx-9ar"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="PAV-l1-OTB"/>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hy7-gX-EJ7">
+                        <rect key="frame" x="20" y="143.5" width="340" height="50.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Idv-Du-hKI">
+                                <rect key="frame" x="0.0" y="0.0" width="340" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QUU-rd-qSI">
+                                <rect key="frame" x="0.0" y="20.5" width="340" height="30"/>
+                            </button>
+                        </subviews>
                     </stackView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="VAt-nk-mVm" secondAttribute="bottom" constant="16" id="3ci-fj-Jcz"/>
-                    <constraint firstItem="Idv-Du-hKI" firstAttribute="top" secondItem="vjS-0t-LO3" secondAttribute="bottom" constant="16" id="5WI-xX-PLF"/>
+                    <constraint firstItem="hy7-gX-EJ7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="6aR-b3-smf"/>
+                    <constraint firstItem="VAt-nk-mVm" firstAttribute="top" secondItem="hy7-gX-EJ7" secondAttribute="bottom" constant="16" id="99G-wL-bFw"/>
                     <constraint firstItem="VAt-nk-mVm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="CaX-9X-Nx6"/>
                     <constraint firstAttribute="trailing" secondItem="vjS-0t-LO3" secondAttribute="trailing" constant="16" id="CoA-G3-pXA"/>
                     <constraint firstItem="vjS-0t-LO3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="L0T-s0-m6g"/>
-                    <constraint firstItem="Idv-Du-hKI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="OE0-wy-XOC"/>
-                    <constraint firstItem="VAt-nk-mVm" firstAttribute="top" secondItem="Idv-Du-hKI" secondAttribute="bottom" constant="16" id="QmK-Pt-BYz"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="hy7-gX-EJ7" secondAttribute="trailing" id="Mxr-Dc-paP"/>
                     <constraint firstAttribute="trailing" secondItem="VAt-nk-mVm" secondAttribute="trailing" constant="16" id="bY8-Rq-t9u"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Idv-Du-hKI" secondAttribute="trailing" constant="16" id="hQl-mn-tLk"/>
                     <constraint firstItem="vjS-0t-LO3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="spJ-By-XWh"/>
+                    <constraint firstItem="hy7-gX-EJ7" firstAttribute="top" secondItem="vjS-0t-LO3" secondAttribute="bottom" constant="16" id="uku-vW-YJq"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="authorImage" destination="I1h-4z-dkb" id="CJe-PC-5UT"/>
-                <outlet property="authorLabel" destination="9Zs-0h-Zq4" id="N38-DJ-uuK"/>
-                <outlet property="dateLabel" destination="Mh7-G9-8UA" id="Udb-Eh-ffd"/>
+                <outlet property="authorLabel" destination="9Zs-0h-Zq4" id="Rmc-oO-Et6"/>
+                <outlet property="commentButton" destination="vzl-yX-OTi" id="15c-yI-HPy"/>
+                <outlet property="dateLabel" destination="Mh7-G9-8UA" id="wBa-qe-8b5"/>
                 <outlet property="likeButton" destination="7zI-P4-A8U" id="CCA-bu-sCJ"/>
                 <outlet property="newsText" destination="Idv-Du-hKI" id="Pcl-1e-C80"/>
+                <outlet property="repostButton" destination="lDo-89-8Tw" id="Z9p-ey-0kB"/>
+                <outlet property="showMoreButton" destination="QUU-rd-qSI" id="Ec0-bK-BhB"/>
+                <outlet property="viewButton" destination="K63-hg-Oko" id="NZa-cE-zrm"/>
             </connections>
             <point key="canvasLocation" x="-60.869565217391312" y="581.25"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="arrowshape.turn.up.left.2.fill" catalog="system" width="128" height="86"/>
         <image name="eye" catalog="system" width="128" height="81"/>
-        <image name="hand.thumbsup" catalog="system" width="128" height="128"/>
-        <image name="hand.thumbsup.fill" catalog="system" width="128" height="124"/>
+        <image name="hand.thumbsup.fill" catalog="system" width="128" height="121"/>
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="text.bubble" catalog="system" width="128" height="110"/>
         <image name="text.bubble.fill" catalog="system" width="128" height="110"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
