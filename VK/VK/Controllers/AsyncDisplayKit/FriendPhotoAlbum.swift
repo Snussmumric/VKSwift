@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import AsyncDisplayKit
-import Kingfisher
+//import Kingfisher
 
 class FriendPhotoAlbumAsync: ASDKViewController<ASDisplayNode>, ASTableDelegate, ASTableDataSource {
     var photos: [Photos] = []
