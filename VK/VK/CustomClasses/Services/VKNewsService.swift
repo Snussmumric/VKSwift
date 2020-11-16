@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-final class VKNewsService {
+class VKNewsService {
     
     let session = Session.instance
     
