@@ -33,7 +33,7 @@ final class VKFriendService {
         var outputError: Error?
         
         override func main() {
-            let method = VKService.VKMethod.friends
+            let method = VKMethod.friends
             
             var components = URLComponents()
             components.scheme = "https"

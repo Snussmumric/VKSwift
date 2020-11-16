@@ -53,6 +53,8 @@
 		3ABC9DC224DC23CB00687D22 /* SliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABC9DC124DC23CB00687D22 /* SliderViewController.swift */; };
 		3ACCA2C024DDDC0C00DC40FD /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3ACCA2BF24DDDC0C00DC40FD /* RealmSwift */; };
 		3ACCA2C324EA6A0F00DC40FD /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3ACCA2C224EA6A0F00DC40FD /* Alamofire */; };
+		3ADDACD62562C4140055C48E /* VKServiceProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADDACD52562C4140055C48E /* VKServiceProxy.swift */; };
+		3ADDACDF2562C65A0055C48E /* VKMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADDACDE2562C65A0055C48E /* VKMethod.swift */; };
 		3AE2FC5E24A87B1D009BFDF2 /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE2FC5D24A87B1D009BFDF2 /* FriendViewController.swift */; };
 		3AE2FC6024A8AD3F009BFDF2 /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE2FC5F24A8AD3F009BFDF2 /* LikeControl.swift */; };
 		3AE719A624BE5C85005388C8 /* TransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE719A524BE5C85005388C8 /* TransitionController.swift */; };
@@ -111,6 +113,9 @@
 		3AA88C312523665C00E9035A /* VKNewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKNewsService.swift; sourceTree = "<group>"; };
 		3ABC9DBE24DB39F600687D22 /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		3ABC9DC124DC23CB00687D22 /* SliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewController.swift; sourceTree = "<group>"; };
+		3ADDACD12562BEC70055C48E /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		3ADDACD52562C4140055C48E /* VKServiceProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceProxy.swift; sourceTree = "<group>"; };
+		3ADDACDE2562C65A0055C48E /* VKMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMethod.swift; sourceTree = "<group>"; };
 		3AE2FC5D24A87B1D009BFDF2 /* FriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
 		3AE2FC5F24A8AD3F009BFDF2 /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
 		3AE719A524BE5C85005388C8 /* TransitionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionController.swift; sourceTree = "<group>"; };
@@ -150,6 +155,7 @@
 		3A0385FB2511FBD20042EF64 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				3ADDACD42562C4000055C48E /* Proxy */,
 				3A0385F72511E4A30042EF64 /* VKFriendService.swift */,
 				3AA1F11224D1A2D200802C27 /* VKService.swift */,
 				3A628AC424D827AA0069394C /* VKResponse.swift */,
@@ -158,6 +164,7 @@
 				3A717A98251C70B10073B250 /* PhotoService.swift */,
 				3AA88C312523665C00E9035A /* VKNewsService.swift */,
 				3A3FCCEF25592BCF00AE1FDA /* LoadImage.swift */,
+				3ADDACDE2562C65A0055C48E /* VKMethod.swift */,
 			);
 			name = Services;
 			path = CustomClasses/Services;
@@ -218,6 +225,7 @@
 				3A0385FB2511FBD20042EF64 /* Services */,
 				3A21E086249F5B7200C604AD /* Model */,
 				3A71D84524CCC35B00C37141 /* App */,
+				3ADDACD12562BEC70055C48E /* MyPlayground.playground */,
 			);
 			path = VK;
 			sourceTree = "<group>";
@@ -281,6 +289,14 @@
 				3A5593CA2494B8740024A35A /* Main.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		3ADDACD42562C4000055C48E /* Proxy */ = {
+			isa = PBXGroup;
+			children = (
+				3ADDACD52562C4140055C48E /* VKServiceProxy.swift */,
+			);
+			path = Proxy;
 			sourceTree = "<group>";
 		};
 		3AEB870224D18C3800F2AF30 /* Frameworks */ = {
@@ -467,6 +483,7 @@
 				3A5B5C4124EC6072008AD877 /* ArrayExtension.swift in Sources */,
 				3A0385FA2511F1E20042EF64 /* Profile.swift in Sources */,
 				3A6F745D252EF8AE00E812EF /* PhotoNode.swift in Sources */,
+				3ADDACD62562C4140055C48E /* VKServiceProxy.swift in Sources */,
 				3AE2FC6024A8AD3F009BFDF2 /* LikeControl.swift in Sources */,
 				3A408F2A249DEC1500964D45 /* MyGroupsController.swift in Sources */,
 				3A5B0A04252EE1CB00434994 /* UIColorExtension.swift in Sources */,
@@ -486,6 +503,7 @@
 				3ABC9DBF24DB39F600687D22 /* Photos.swift in Sources */,
 				3ABC9DC224DC23CB00687D22 /* SliderViewController.swift in Sources */,
 				3A71D84224CCC0C700C37141 /* Session.swift in Sources */,
+				3ADDACDF2562C65A0055C48E /* VKMethod.swift in Sources */,
 				3AE719AC24BF9F76005388C8 /* CGRectExtension.swift in Sources */,
 				3AA1F11324D1A2D200802C27 /* VKService.swift in Sources */,
 				3A408F2E249F4B3A00964D45 /* FriendCell.swift in Sources */,
