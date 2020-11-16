@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import Kingfisher
 
 protocol NewsPostCellDelegate: class {
     func didTapShowMore(cell: NewsCell)
@@ -29,12 +28,10 @@ final class NewsCell: UITableViewCell {
     @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var imageContainerView: UIView!
-    lazy var nextImageView = UIImageView()
     @IBOutlet weak var showMoreButton: UIButton!
     
-    lazy var service = VKService()
-    var user: [Users] = []
-    var group: [Groups] = []
+    lazy var nextImageView = UIImageView()
+
     
     var isExpanded = false {
         didSet {
@@ -89,21 +86,7 @@ final class NewsCell: UITableViewCell {
         let labelSize = getLabelSize(text: item.text ?? "", font: newsText.font)
         showMoreButton.isHidden = labelSize.height < 200
         newsText.text = item.text
-        
-        if let imageUrl = item.profile?.imageURL, let url = URL(string: imageUrl) {
-            let resource = ImageResource(downloadURL: url)
-            authorImage?.kf.setImage(with: resource)
-        }
+
     }
-    
-//    func setCollectionDelegate (_ delegate: UICollectionViewDataSource & UICollectionViewDelegate, for row: Int) {
-//        collectionView.dataSource = delegate
-//        collectionView.delegate = delegate
-//        collectionView.tag = row
-//        collectionView.reloadData()
-//    }
-    
-    
-    
 }
 

@@ -27,6 +27,9 @@ class VkAuthViewController: UIViewController, WKNavigationDelegate {
         
         loadVkAuth()
         
+//        vkmethods.getData(.stats, <#T##type: Decodable.Protocol##Decodable.Protocol#>, shouldCache: false, completion: nil)
+        vkmethods.getData(.stats, Users.self)
+        
     }
     func loadVkAuth () {
         var urlComponents = URLComponents()

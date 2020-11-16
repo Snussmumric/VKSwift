@@ -22,6 +22,7 @@ final class VKService {
         case users(id: Int)
         case news(_ type: NewsItemType)
         case groupID(id: Int)
+        case stats
         
         var path: String {
             switch self {
@@ -39,6 +40,8 @@ final class VKService {
                 return "/method/newsfeed.get"
             case .groupID:
                 return "/method/groups.getById"
+            case .stats:
+            return "/method/stats.trackVisitor"
             }
         }
         
@@ -60,6 +63,8 @@ final class VKService {
             //                return ["filter": "post,photo,photo_tag,wall_photo"]
             case let .groupID(id):
                 return ["group_id": String(id)]
+            case .stats:
+            return [:]
             }
         }
     }
@@ -126,8 +131,6 @@ final class VKService {
             }
         }
     }
-    
-
     
     func getNews<T: News>(_ type: T.Type,
                           completion:  (([T]) -> Void)? = nil) {

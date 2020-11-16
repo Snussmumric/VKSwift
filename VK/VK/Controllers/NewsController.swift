@@ -10,6 +10,8 @@ import UIKit
 import RealmSwift
 
 final class NewsController: UITableViewController, UITableViewDataSourcePrefetching, NewsPostCellDelegate {
+    
+    lazy var loadImage = LoadImage()
     lazy var newsService = VKNewsService()
     var news: [NewsItems] = []
     
@@ -111,11 +113,27 @@ final class NewsController: UITableViewController, UITableViewDataSourcePrefetch
             cell.delegate = self
             cell.dateLabel.text = getCellDateText(forIndexPath: indexPath, andTimestamp: item.date)
             
+            loadImage.downloadImage(with: item.profile?.imageURL ?? "") { (image) in
+                            guard let image = image else { return }
+                            cell.authorImage.image = image
+                        }
+            
             return cell
         case .photo:
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsWallPhotoCell", for: indexPath) as! NewsWallPhotoCell
             cell.configure(model: item)
             cell.dateLabel.text = getCellDateText(forIndexPath: indexPath, andTimestamp: item.date)
+            
+            loadImage.downloadImage(with: item.profile?.imageURL ?? "") { (image) in
+                            guard let image = image else { return }
+                            cell.authorImage.image = image
+                        }
+            
+            loadImage.downloadImage(with: item.photo?.url ?? "") { (image) in
+                            guard let image = image else { return }
+                            cell.postPhoto.image = image
+                        }
+            
             return cell
             
         }

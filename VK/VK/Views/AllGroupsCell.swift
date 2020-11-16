@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class AllGroupsCell: UITableViewCell {
     
@@ -16,13 +15,6 @@ class AllGroupsCell: UITableViewCell {
     
     func configure(group: Groups) {
         allGroupsName?.text = group.name
-        
-        if let imageUrl = group.imageUrl, let url = URL(string: imageUrl) {
-            let resource = ImageResource(downloadURL: url)
-            allGroupsImage?.kf.setImage(with: resource, completionHandler:  { [weak self] _ in
-                self?.setNeedsLayout()
-            })
-        }
     }
     
     override func awakeFromNib() {

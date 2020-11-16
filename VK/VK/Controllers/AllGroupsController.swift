@@ -10,6 +10,8 @@ import UIKit
 
 class AllGroupsController: UITableViewController, UISearchBarDelegate {
     
+    lazy var loadImage = LoadImage()
+
     var groups: [Groups] = []
     lazy var service = VKService()
 
@@ -36,6 +38,11 @@ class AllGroupsController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! AllGroupsCell
         cell.configure(group: groups[indexPath.row])
+        
+        loadImage.downloadImage(with: groups[indexPath.row].imageUrl ?? "") { (image) in
+                        guard let image = image else { return }
+                        cell.allGroupsImage.image = image
+                    }
         return cell
     }
     

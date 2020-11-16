@@ -24,4 +24,6 @@ extension UIColor {
             blue: rgb & 0xFF
         )
     }
+    
+    static let startColor = UIColor(rgb: 0x92D5F9)
 }

@@ -50,7 +50,7 @@ class FriendViewController: UIViewController, UICollectionViewDelegate, UICollec
         bindViewToRealm()
         loadFromNetwork()
         
-        personalInfoDataView.backgroundColor = UIColor(rgb: 0x92D5F9)
+        personalInfoDataView.backgroundColor = UIColor.startColor
         
         if let imageUrl = person.imageUrl100, let url = URL(string: imageUrl) {
             let resource = ImageResource(downloadURL: url)
